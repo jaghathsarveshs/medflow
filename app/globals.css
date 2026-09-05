@@ -1,38 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f172a;
-  --foreground: #f8fafc;
+  --color-base: #F1EFEA;
+  --color-ink: #202125;
+  --color-slate: #B2BECF;
+  --color-accent: #FD7F66;
+  --color-critical: #D64545;
+  --color-moderate: #E0A030;
+  --color-stable: #3A8F6F;
+  --background: #F1EFEA;
+  --foreground: #202125;
 }
 
 body {
-  background-color: #090d16;
-  color: #f8fafc;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--color-base);
+  color: var(--color-ink);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Ensure minimum 48px tap targets for ambulance crew touchscreens */
-button, input, select, label.checkbox-label {
+/* Ensure minimum 48px tap targets for mobile-first patient screens */
+.tap-target, button, input, select, textarea, label.checkbox-label {
   min-height: 48px;
 }
 
-/* Custom smooth transitions & ambulance emergency styles */
+/* Status Badges */
 .badge-critical {
-  background-color: #991b1b;
-  color: #fef2f2;
-  border: 1px solid #ef4444;
+  background-color: var(--color-critical);
+  color: #ffffff;
 }
 
 .badge-moderate {
-  background-color: #9a3412;
-  color: #fff7ed;
-  border: 1px solid #f97316;
+  background-color: var(--color-moderate);
+  color: #ffffff;
 }
 
-.badge-minor {
-  background-color: #166534;
-  color: #f0fdf4;
-  border: 1px solid #22c55e;
+.badge-stable {
+  background-color: var(--color-stable);
+  color: #ffffff;
 }

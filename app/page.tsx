@@ -90,26 +90,28 @@ export default function HomePage() {
               </div>
             </Link>
 
-            {/* Patient Card (Disabled / Coming Soon) */}
-            <div className="bg-slate-900/40 border-2 border-slate-800/80 rounded-3xl p-6 opacity-60 cursor-not-allowed flex flex-col justify-between space-y-4 relative overflow-hidden">
+            {/* Patient Card */}
+            <Link
+              href="/patient/login"
+              className="group bg-slate-900 hover:bg-slate-850 border-2 border-slate-800 hover:border-[#FD7F66] rounded-3xl p-6 transition-all transform active:scale-[0.98] shadow-2xl flex flex-col justify-between space-y-4"
+            >
               <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 text-slate-400 flex items-center justify-center text-3xl font-black">
-                    🩺
-                  </div>
-                  <span className="px-3 py-1 text-xs font-black bg-slate-800 text-slate-400 border border-slate-700 rounded-full">
-                    Coming soon
-                  </span>
+                <div className="w-14 h-14 rounded-2xl bg-[#FD7F66]/20 border border-[#FD7F66] text-[#FD7F66] flex items-center justify-center text-3xl font-black shadow-lg">
+                  🩺
                 </div>
-                <h4 className="text-2xl font-black text-slate-300">Patient</h4>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  For patients and family members to track live ambulance location and estimated arrival time.
+                <h4 className="text-2xl font-black text-white group-hover:text-[#FD7F66] transition">
+                  Patient
+                </h4>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  For patients and family members to access QR code, manage health records, find doctors, and get emergency hospital routing.
                 </p>
               </div>
-              <div className="pt-2 text-xs font-bold text-slate-500">
-                Feature under development
+              <div className="pt-2 text-xs font-bold text-[#FD7F66] group-hover:translate-x-1 transition flex items-center gap-1">
+                <span>Access Patient Portal</span>
+                <span>→</span>
               </div>
-            </div>
+            </Link>
+
           </div>
         </section>
 
