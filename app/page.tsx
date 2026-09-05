@@ -1,69 +1,175 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import React from 'react';
+import Link from 'next/link';
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-slate-950 text-slate-100 px-4 py-8 md:py-12">
+      <div className="max-w-6xl mx-auto space-y-12">
+        {/* Header / Logo Widget */}
+        <header className="flex items-center justify-between border-b border-slate-800 pb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-rose-600 to-red-500 flex items-center justify-center font-black text-2xl text-white shadow-xl shadow-rose-900/50">
+              ✚
+            </div>
+            <div>
+              <h1 className="text-2xl font-black tracking-tight text-white">MedFlow</h1>
+              <p className="text-xs font-bold text-rose-400">Emergency Hospital Routing System</p>
+            </div>
+          </div>
+
+          <span className="hidden sm:inline-block text-xs font-mono font-bold bg-slate-900 border border-slate-800 text-slate-400 px-3.5 py-2 rounded-xl">
+            PLATFORM v1.0
+          </span>
+        </header>
+
+        {/* Hero Section: Centered Intro Paragraph */}
+        <section className="text-center max-w-2xl mx-auto space-y-4">
+          <span className="px-3.5 py-1 text-xs font-extrabold uppercase tracking-widest text-rose-400 bg-rose-950/60 border border-rose-800/80 rounded-full">
+            REAL-TIME EMERGENCY DISPATCH
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight">
+            Saving Critical Lives Through Intelligent Routing
+          </h2>
+          <p className="text-base text-slate-300 leading-relaxed">
+            MedFlow is an emergency hospital routing platform that connects paramedics and hospitals in real time. It analyzes casualty severity, matches required medical infrastructure, and directs ambulances to the optimal facility.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        </section>
+
+        {/* User Portals Section */}
+        <section className="space-y-6">
+          <div className="text-center sm:text-left">
+            <h3 className="text-2xl font-black text-white tracking-tight">Welcome User!</h3>
+            <p className="text-sm text-slate-400">Select your role to access your dedicated portal:</p>
+          </div>
+
+          {/* 3 Large Tappable Role Boxes */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Ambulance Card */}
+            <Link
+              href="/ambulance"
+              className="group bg-slate-900 hover:bg-slate-850 border-2 border-slate-800 hover:border-rose-500 rounded-3xl p-6 transition-all transform active:scale-[0.98] shadow-2xl flex flex-col justify-between space-y-4"
+            >
+              <div className="space-y-3">
+                <div className="w-14 h-14 rounded-2xl bg-rose-950/80 border border-rose-700 text-rose-400 flex items-center justify-center text-3xl font-black shadow-lg">
+                  🚑
+                </div>
+                <h4 className="text-2xl font-black text-white group-hover:text-rose-300 transition">
+                  Ambulance
+                </h4>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  For emergency medical crews and paramedics to input casualty triage and receive instant optimal hospital dispatch.
+                </p>
+              </div>
+              <div className="pt-2 text-xs font-bold text-rose-400 group-hover:translate-x-1 transition flex items-center gap-1">
+                <span>Access Ambulance Portal</span>
+                <span>→</span>
+              </div>
+            </Link>
+
+            {/* Hospital Card */}
+            <Link
+              href="/hospital"
+              className="group bg-slate-900 hover:bg-slate-850 border-2 border-slate-800 hover:border-cyan-500 rounded-3xl p-6 transition-all transform active:scale-[0.98] shadow-2xl flex flex-col justify-between space-y-4"
+            >
+              <div className="space-y-3">
+                <div className="w-14 h-14 rounded-2xl bg-cyan-950/80 border border-cyan-700 text-cyan-400 flex items-center justify-center text-3xl font-black shadow-lg">
+                  🏥
+                </div>
+                <h4 className="text-2xl font-black text-white group-hover:text-cyan-300 transition">
+                  Hospital
+                </h4>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  For hospital staff and emergency department managers to monitor incoming transfers and update live bed capacity.
+                </p>
+              </div>
+              <div className="pt-2 text-xs font-bold text-cyan-400 group-hover:translate-x-1 transition flex items-center gap-1">
+                <span>Access Hospital Portal</span>
+                <span>→</span>
+              </div>
+            </Link>
+
+            {/* Patient Card (Disabled / Coming Soon) */}
+            <div className="bg-slate-900/40 border-2 border-slate-800/80 rounded-3xl p-6 opacity-60 cursor-not-allowed flex flex-col justify-between space-y-4 relative overflow-hidden">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 text-slate-400 flex items-center justify-center text-3xl font-black">
+                    🩺
+                  </div>
+                  <span className="px-3 py-1 text-xs font-black bg-slate-800 text-slate-400 border border-slate-700 rounded-full">
+                    Coming soon
+                  </span>
+                </div>
+                <h4 className="text-2xl font-black text-slate-300">Patient</h4>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  For patients and family members to track live ambulance location and estimated arrival time.
+                </p>
+              </div>
+              <div className="pt-2 text-xs font-bold text-slate-500">
+                Feature under development
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 5 Information Boxes Section */}
+        <section className="space-y-6 pt-4 border-t border-slate-800/80">
+          <div className="text-center sm:text-left">
+            <span className="text-xs uppercase font-extrabold tracking-widest text-slate-400">
+              PRODUCT MISSION & CAPABILITIES
+            </span>
+            <h3 className="text-xl font-black text-white mt-1">Why MedFlow Works</h3>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+            {/* Box 1 */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2 hover:border-slate-700 transition">
+              <span className="text-xl">⚡</span>
+              <h5 className="text-sm font-extrabold text-white">Fast Routing</h5>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Calculates shortest transport duration based on live GPS metrics and hospital proximity. Reduces emergency arrival times for critical victims.
+              </p>
+            </div>
+
+            {/* Box 2 */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2 hover:border-slate-700 transition">
+              <span className="text-xl">📊</span>
+              <h5 className="text-sm font-extrabold text-white">Live Hospital Data</h5>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Monitors real-time general beds, ICU availability, ventilators, CT/MRI scanners, and blood bank status. Prevents ambulances from arriving at unequipped facilities.
+              </p>
+            </div>
+
+            {/* Box 3 */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2 hover:border-slate-700 transition">
+              <span className="text-xl">👥</span>
+              <h5 className="text-sm font-extrabold text-white">Multi-Casualty Handling</h5>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Sequentially routes multiple victims in a single incident using an in-memory working-set capacity engine. Prevents sudden hospital overload during mass casualty events.
+              </p>
+            </div>
+
+            {/* Box 4 */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2 hover:border-slate-700 transition">
+              <span className="text-xl">🎛️</span>
+              <h5 className="text-sm font-extrabold text-white">Crew Override Control</h5>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Empowers paramedics to override algorithmic recommendations based on on-scene clinical judgement. Ensures human expertise remains at the core of care.
+              </p>
+            </div>
+
+            {/* Box 5 */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2 hover:border-slate-700 transition">
+              <span className="text-xl">📱</span>
+              <h5 className="text-sm font-extrabold text-white">No-App-Needed Access</h5>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Lightweight mobile-first web app accessible instantly from any device without downloads. Works seamlessly on tablets, phones, and vehicle displays.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
