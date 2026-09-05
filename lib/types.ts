@@ -79,6 +79,17 @@ export interface Ambulance {
   created_at?: string;
 }
 
+export interface HospitalRoom {
+  id: string;
+  hospital_id: string;
+  room_type: string;
+  beds_total: number;
+  beds_available: number;
+  specialization: string;
+  doctor_status: 'available' | 'busy';
+  updated_at?: string;
+}
+
 export interface RoutingResult {
   casualty: CasualtyDraft;
   assignedHospital: Hospital;
@@ -88,4 +99,5 @@ export interface RoutingResult {
   rank: number;
   alternativeHospitalsCount: number;
 }
+
 

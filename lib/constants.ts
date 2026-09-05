@@ -191,3 +191,58 @@ export const FALLBACK_AMBULANCES = [
   }
 ];
 
+
+export const FALLBACK_ROOMS = [
+  {
+    id: 'room-101',
+    hospital_id: 'hosp-001',
+    room_type: 'ICU Ward A (Neuro-Trauma)',
+    beds_total: 12,
+    beds_available: 5,
+    specialization: 'Neurology & Traumatic Brain Injury',
+    doctor_status: 'available' as const,
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'room-102',
+    hospital_id: 'hosp-001',
+    room_type: 'Emergency Surgical Suite 1',
+    beds_total: 6,
+    beds_available: 2,
+    specialization: 'Acute Trauma Surgery',
+    doctor_status: 'busy' as const,
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'room-103',
+    hospital_id: 'hosp-001',
+    room_type: 'Cardiac Care Unit (CCU)',
+    beds_total: 8,
+    beds_available: 3,
+    specialization: 'Cardiology & Resuscitation',
+    doctor_status: 'available' as const,
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'room-201',
+    hospital_id: 'hosp-002',
+    room_type: 'ICU Unit 2',
+    beds_total: 8,
+    beds_available: 1,
+    specialization: 'General Intensive Care',
+    doctor_status: 'busy' as const,
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'room-202',
+    hospital_id: 'hosp-002',
+    room_type: 'Orthopedic Trauma Ward',
+    beds_total: 15,
+    beds_available: 6,
+    specialization: 'Orthopedics & Fractures',
+    doctor_status: 'available' as const,
+    updated_at: new Date().toISOString()
+  }
+];
+
+
