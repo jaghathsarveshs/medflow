@@ -90,6 +90,28 @@ export interface HospitalRoom {
   updated_at?: string;
 }
 
+export interface PatientRecord {
+  id: string;
+  qr_code: string;
+  name: string;
+  blood_group: string;
+  allergies: string[];
+  chronic_conditions: string[];
+  emergency_contact_name: string;
+  emergency_contact_phone: string;
+  created_at?: string;
+}
+
+export interface PatientVisit {
+  id: string;
+  patient_id: string;
+  doctor_user_id: string;
+  doctor_name?: string;
+  visit_date: string;
+  prescription_notes: string;
+  created_at?: string;
+}
+
 export interface RoutingResult {
   casualty: CasualtyDraft;
   assignedHospital: Hospital;
@@ -99,5 +121,6 @@ export interface RoutingResult {
   rank: number;
   alternativeHospitalsCount: number;
 }
+
 
 

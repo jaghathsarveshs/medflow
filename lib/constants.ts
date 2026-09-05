@@ -245,4 +245,60 @@ export const FALLBACK_ROOMS = [
   }
 ];
 
+export const SEED_PATIENT_RECORDS = [
+  {
+    id: 'p-001',
+    qr_code: 'QR-DEMO-001',
+    name: 'John Doe',
+    blood_group: 'O+',
+    allergies: ['Penicillin', 'Peanuts'],
+    chronic_conditions: ['Hypertension', 'Asthma'],
+    emergency_contact_name: 'Sarah Doe (Wife)',
+    emergency_contact_phone: '+1 (555) 019-8800',
+    created_at: new Date().toISOString()
+  },
+  {
+    id: 'p-002',
+    qr_code: 'QR-DEMO-002',
+    name: 'Jane Smith',
+    blood_group: 'A-',
+    allergies: ['Sulfa drugs'],
+    chronic_conditions: ['Type 2 Diabetes'],
+    emergency_contact_name: 'Robert Smith (Brother)',
+    emergency_contact_phone: '+1 (555) 014-7711',
+    created_at: new Date().toISOString()
+  },
+  {
+    id: 'p-003',
+    qr_code: 'QR-DEMO-003',
+    name: 'Michael Vance',
+    blood_group: 'AB+',
+    allergies: ['Latex', 'Aspirin'],
+    chronic_conditions: ['Coronary Artery Disease'],
+    emergency_contact_name: 'Elena Vance (Daughter)',
+    emergency_contact_phone: '+1 (555) 012-3344',
+    created_at: new Date().toISOString()
+  }
+];
+
+export const SEED_PATIENT_VISITS = [
+  {
+    id: 'visit-101',
+    patient_id: 'p-001',
+    doctor_user_id: 'DOC-404',
+    doctor_name: 'Dr. Alex Vance',
+    visit_date: new Date(Date.now() - 86400000 * 5).toISOString(),
+    prescription_notes: 'Presented with mild dyspnea. Administered Albuterol nebulizer. Prescribed Salbutamol inhaler 2 puffs PRN.'
+  },
+  {
+    id: 'visit-102',
+    patient_id: 'p-002',
+    doctor_user_id: 'DOC-102',
+    doctor_name: 'Dr. Sarah Connor',
+    visit_date: new Date(Date.now() - 86400000 * 12).toISOString(),
+    prescription_notes: 'Routine diabetic follow-up. HbA1c 6.8%. Continue Metformin 500mg BD. Monitor blood glucose daily.'
+  }
+];
+
+
 
