@@ -169,7 +169,7 @@ export default function ResultsScreen({
           onClick={onReset}
           className="w-full h-14 bg-white hover:bg-[#F1EFEA] text-[#202125] font-extrabold text-base rounded-2xl border-2 border-[#B2BECF]/60 transition cursor-pointer flex items-center justify-center gap-2 shadow-sm"
         >
-          <span>🔄</span> START NEW INCIDENT / EDIT INTAKE
+          <span>🔄</span> START NEW INCIDENT
         </button>
       </div>
     </div>

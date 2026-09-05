@@ -61,6 +61,11 @@ export const INJURY_TYPES: Record<string, InjuryConfig> = {
     label: 'General Non-Trauma Medical Emergency',
     defaultInfra: [],
     defaultSeverity: 'moderate'
+  },
+  'others': {
+    label: 'Others',
+    defaultInfra: [],
+    defaultSeverity: 'moderate'
   }
 };
 
@@ -255,7 +260,7 @@ export const SEED_PATIENT_RECORDS = [
     chronic_conditions: ['Hypertension', 'Asthma'],
     emergency_contact_name: 'Sarah Doe (Wife)',
     emergency_contact_phone: '+1 (555) 019-8800',
-    created_at: new Date().toISOString()
+    created_at: '2026-08-01T09:00:00.000Z'
   },
   {
     id: 'p-002',
@@ -266,7 +271,7 @@ export const SEED_PATIENT_RECORDS = [
     chronic_conditions: ['Type 2 Diabetes'],
     emergency_contact_name: 'Robert Smith (Brother)',
     emergency_contact_phone: '+1 (555) 014-7711',
-    created_at: new Date().toISOString()
+    created_at: '2026-08-05T11:30:00.000Z'
   },
   {
     id: 'p-003',
@@ -277,7 +282,7 @@ export const SEED_PATIENT_RECORDS = [
     chronic_conditions: ['Coronary Artery Disease'],
     emergency_contact_name: 'Elena Vance (Daughter)',
     emergency_contact_phone: '+1 (555) 012-3344',
-    created_at: new Date().toISOString()
+    created_at: '2026-08-10T14:15:00.000Z'
   }
 ];
 
@@ -287,7 +292,7 @@ export const SEED_PATIENT_VISITS = [
     patient_id: 'p-001',
     doctor_user_id: 'DOC-404',
     doctor_name: 'Dr. Alex Vance',
-    visit_date: new Date(Date.now() - 86400000 * 5).toISOString(),
+    visit_date: '2026-08-25T10:30:00.000Z',
     prescription_notes: 'Presented with mild dyspnea. Administered Albuterol nebulizer. Prescribed Salbutamol inhaler 2 puffs PRN.'
   },
   {
@@ -295,10 +300,59 @@ export const SEED_PATIENT_VISITS = [
     patient_id: 'p-002',
     doctor_user_id: 'DOC-102',
     doctor_name: 'Dr. Sarah Connor',
-    visit_date: new Date(Date.now() - 86400000 * 12).toISOString(),
+    visit_date: '2026-08-20T14:15:00.000Z',
     prescription_notes: 'Routine diabetic follow-up. HbA1c 6.8%. Continue Metformin 500mg BD. Monitor blood glucose daily.'
   }
 ];
+
+export const SEED_DOCTORS = [
+  {
+    id: '40400000-0000-4000-8000-000000000404',
+    license_code: 'DOC-404',
+    name: 'Dr. Alex Smith',
+    qualification: 'MBBS, MD (Critical Care)',
+    specialization: 'Neurology & Critical Care',
+    hospital_id: 'hosp-001',
+    created_at: '2026-08-01T08:00:00.000Z'
+  },
+  {
+    id: '10200000-0000-4000-8000-000000000102',
+    license_code: 'DOC-102',
+    name: 'Dr. Sarah Connor',
+    qualification: 'MBBS, MS (Trauma Surgery)',
+    specialization: 'Acute Trauma & Emergency Surgery',
+    hospital_id: 'hosp-001',
+    created_at: '2026-08-01T08:00:00.000Z'
+  },
+  {
+    id: '10800000-0000-4000-8000-000000000108',
+    license_code: 'DOC-108',
+    name: 'Dr. Vivek Menon',
+    qualification: 'MBBS, MCh (Neurosurgery)',
+    specialization: 'Neurosurgery & TBI',
+    hospital_id: 'hosp-001',
+    created_at: '2026-08-01T08:00:00.000Z'
+  },
+  {
+    id: '20400000-0000-4000-8000-000000000204',
+    license_code: 'DOC-204',
+    name: 'Dr. Anjali Desai',
+    qualification: 'MBBS, DNB (Cardiology)',
+    specialization: 'Cardiology & Resuscitation',
+    hospital_id: 'hosp-002',
+    created_at: '2026-08-01T08:00:00.000Z'
+  },
+  {
+    id: '30500000-0000-4000-8000-000000000305',
+    license_code: 'DOC-305',
+    name: 'Dr. Arjun Rao',
+    qualification: 'MBBS, MS (Orthopaedics)',
+    specialization: 'Orthopedics & Fractures',
+    hospital_id: 'hosp-002',
+    created_at: '2026-08-01T08:00:00.000Z'
+  }
+];
+
 
 
 

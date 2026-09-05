@@ -16,6 +16,7 @@ export default function PatientEmergencyRoutingPage() {
   const [locationAddress, setLocationAddress] = useState('Central Metro Junction (12.9716, 77.5946)');
   const [coords, setCoords] = useState({ lat: 12.9716, long: 77.5946 });
   const [injuryType, setInjuryType] = useState('head_injury');
+  const [customInjuryType, setCustomInjuryType] = useState('');
   const [severity, setSeverity] = useState<Severity>('critical');
 
   const [hospitals, setHospitals] = useState<Hospital[]>(FALLBACK_HOSPITALS);
@@ -63,20 +64,22 @@ export default function PatientEmergencyRoutingPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const effectiveInjuryType = injuryType === 'others' ? (customInjuryType.trim() || 'Others') : injuryType;
+
     // 1. Derive required infra using existing function
-    const triageResult = deriveCasualtyTriage(injuryType, {
+    const triageResult = deriveCasualtyTriage(effectiveInjuryType, {
       isConscious: severity !== 'critical',
       isBreathingNormally: severity !== 'critical',
-      hasSevereBleeding: injuryType === 'severe_bleeding',
+      hasSevereBleeding: effectiveInjuryType === 'severe_bleeding',
     });
 
     const casualtyDraft = {
       tempId: 'c-patient-1',
-      injuryType,
+      injuryType: effectiveInjuryType,
       triageFlags: {
         isConscious: severity !== 'critical',
         isBreathingNormally: severity !== 'critical',
-        hasSevereBleeding: injuryType === 'severe_bleeding',
+        hasSevereBleeding: effectiveInjuryType === 'severe_bleeding',
       },
       derivedSeverity: severity,
       derivedInfra: triageResult.requiredInfra,
@@ -107,7 +110,7 @@ export default function PatientEmergencyRoutingPage() {
         await supabase.from('casualties').insert([
           {
             accident_id: accId,
-            injury_type: injuryType,
+            injury_type: effectiveInjuryType,
             severity: severity,
             required_infra: triageResult.requiredInfra,
             patient_id: patient?.id || null,
@@ -193,6 +196,22 @@ export default function PatientEmergencyRoutingPage() {
                   </option>
                 ))}
               </select>
+
+              {injuryType === 'others' && (
+                <div className="mt-2.5 space-y-1 animate-in fade-in duration-200">
+                  <label className="block text-xs font-bold text-[#FD7F66]">
+                    Specify Custom Primary Injury / Presentation:
+                  </label>
+                  <input
+                    type="text"
+                    value={customInjuryType}
+                    onChange={(e) => setCustomInjuryType(e.target.value)}
+                    placeholder="Enter primary injury or condition details..."
+                    className="w-full h-12 bg-[#F1EFEA] border-2 border-[#FD7F66] rounded-lg px-3 text-[#202125] text-base font-medium focus:outline-none shadow-sm"
+                    required
+                  />
+                </div>
+              )}
             </div>
 
             {/* Severity Triage (3 styled buttons) */}

@@ -98,11 +98,22 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const processedCasualties = casualties.map((cas) => {
+      if (cas.injuryType === 'others') {
+        const customText = cas.customInjuryType?.trim();
+        return {
+          ...cas,
+          injuryType: customText ? customText : 'Others',
+        };
+      }
+      return cas;
+    });
+
     onSubmit({
       ambulanceId,
       reportedBy,
       location: { ...coords, address: locationAddress },
-      casualties,
+      casualties: processedCasualties,
     });
   };
 
@@ -224,6 +235,22 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
                     </option>
                   ))}
                 </select>
+
+                {cas.injuryType === 'others' && (
+                  <div className="mt-2.5 space-y-1 animate-in fade-in duration-200">
+                    <label className="block text-xs font-bold text-[#FD7F66]">
+                      Specify Custom Primary Injury / Presentation:
+                    </label>
+                    <input
+                      type="text"
+                      value={cas.customInjuryType || ''}
+                      onChange={(e) => updateCasualtyField(index, { customInjuryType: e.target.value })}
+                      placeholder="Enter primary injury or condition details..."
+                      className="w-full h-12 bg-[#F1EFEA] border-2 border-[#FD7F66] rounded-xl px-3 text-[#202125] text-base font-medium focus:outline-none shadow-sm"
+                      required
+                    />
+                  </div>
+                )}
               </div>
 
               {/* Quick Triage Checkboxes (Large 48px tap targets for ambulance crew) */}

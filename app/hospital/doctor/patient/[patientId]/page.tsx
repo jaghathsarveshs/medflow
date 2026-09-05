@@ -6,8 +6,10 @@ import { useRouter } from 'next/navigation';
 import { PatientRecord, PatientVisit, CasualtyRecord } from '../../../../../lib/types';
 import { SEED_PATIENT_RECORDS, SEED_PATIENT_VISITS } from '../../../../../lib/constants';
 import { supabase } from '../../../../../lib/supabase';
+import { downloadPatientLabReport } from '../../../../../lib/generatePdfReport';
 
 const LOCAL_STORAGE_VISITS_KEY = 'medflow_patient_visits_v1';
+
 
 function PatientDetailInner({ patientId }: { patientId: string }) {
   const router = useRouter();
@@ -44,8 +46,11 @@ function PatientDetailInner({ patientId }: { patientId: string }) {
   const [prescriptionNotes, setPrescriptionNotes] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [noticeMessage, setNoticeMessage] = useState('');
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+
     try {
       const storedDoctor = localStorage.getItem('medflow_doctor_info');
       if (storedDoctor) {
@@ -264,16 +269,25 @@ function PatientDetailInner({ patientId }: { patientId: string }) {
 
             {/* PATIENT RECORD CARD */}
             <div className="bg-white border-2 border-[#B2BECF]/60 rounded-3xl p-6 space-y-6 shadow-sm">
-              <div className="flex items-start justify-between border-b border-[#B2BECF]/30 pb-4">
+              <div className="flex items-start justify-between border-b border-[#B2BECF]/30 pb-4 flex-wrap gap-3">
                 <div>
                   <span className="text-[10px] uppercase font-black text-[#3A8F6F] tracking-wider block">
                     PATIENT MEDICAL FILE • QR: {patient.qr_code}
                   </span>
                   <h1 className="text-3xl font-black text-[#202125]">{patient.name}</h1>
                 </div>
-                <div className="bg-[#FD7F66]/10 border border-[#FD7F66]/40 text-[#FD7F66] px-4 py-2 rounded-2xl text-center">
-                  <span className="text-[10px] uppercase font-bold block text-[#FD7F66]">Blood Group</span>
-                  <span className="text-2xl font-black">{patient.blood_group}</span>
+                <div className="flex items-center gap-3 flex-wrap">
+                  <button
+                    onClick={() => downloadPatientLabReport(patient)}
+                    className="h-12 px-4 bg-[#3A8F6F] hover:bg-[#2e745a] text-white font-extrabold text-xs rounded-2xl shadow-md transition cursor-pointer flex items-center gap-2 active:scale-95"
+                  >
+                    <span>📄</span>
+                    <span>Download Lab Report (PDF)</span>
+                  </button>
+                  <div className="bg-[#FD7F66]/10 border border-[#FD7F66]/40 text-[#FD7F66] px-4 py-2 rounded-2xl text-center min-w-[90px]">
+                    <span className="text-[10px] uppercase font-bold block text-[#FD7F66]">Blood Group</span>
+                    <span className="text-2xl font-black">{patient.blood_group}</span>
+                  </div>
                 </div>
               </div>
 
@@ -354,8 +368,8 @@ function PatientDetailInner({ patientId }: { patientId: string }) {
                         <span className="font-extrabold text-[#3A8F6F]">
                           {v.doctor_name || `Attending Doctor ID: ${v.doctor_user_id}`}
                         </span>
-                        <span className="text-[#202125]/60 font-mono">
-                          📅 {new Date(v.visit_date).toLocaleString()}
+                        <span className="text-[#202125]/60 font-mono" suppressHydrationWarning>
+                          📅 {isMounted ? new Date(v.visit_date).toLocaleString() : v.visit_date}
                         </span>
                       </div>
                       <p className="text-sm text-[#202125] font-medium leading-relaxed">

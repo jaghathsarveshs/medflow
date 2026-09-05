@@ -35,6 +35,7 @@ export interface TriageFlags {
 export interface CasualtyDraft {
   tempId: string;
   injuryType: string;
+  customInjuryType?: string;
   triageFlags: TriageFlags;
   derivedSeverity: Severity;
   derivedInfra: RequiredInfra[];
@@ -121,6 +122,11 @@ export interface RoutingResult {
   rank: number;
   alternativeHospitalsCount: number;
 }
-
-
-
+export interface Doctor {
+  id: string;
+  name: string;
+  qualification: string | null;
+  specialization: string | null;
+  hospital_id: string | null;
+  created_at?: string;
+}

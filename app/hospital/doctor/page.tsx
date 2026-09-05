@@ -3,12 +3,19 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { SEED_DOCTORS } from '../../../lib/constants';
 
 export default function DoctorLoginPage() {
   const router = useRouter();
   const [doctorId, setDoctorId] = useState('DOC-404');
   const [doctorName, setDoctorName] = useState('Dr. Alex Smith');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const demoPresets = SEED_DOCTORS.map(d => ({
+    code: d.license_code,
+    name: d.name,
+    specialization: d.specialization
+  }));
 
   useEffect(() => {
     // Read existing stored doctor info if available
@@ -51,7 +58,7 @@ export default function DoctorLoginPage() {
 
   return (
     <main className="min-h-screen bg-[#F1EFEA] text-[#202125] px-4 py-8 md:py-12 flex items-center justify-center font-sans">
-      <div className="max-w-md w-full space-y-6">
+      <div className="max-w-lg w-full space-y-6">
         {/* Navigation */}
         <div className="flex items-center justify-between">
           <Link
@@ -116,22 +123,36 @@ export default function DoctorLoginPage() {
             </button>
           </form>
 
-          {/* Quick Demo Credentials Preset */}
-          <div className="pt-3 border-t border-[#B2BECF]/30 text-center">
-            <span className="text-[11px] text-[#202125]/60 font-medium">Quick Demo Preset: </span>
-            <button
-              type="button"
-              onClick={() => {
-                setDoctorId('DOC-404');
-                setDoctorName('Dr. Alex Smith');
-              }}
-              className="text-xs text-[#3A8F6F] font-bold hover:underline cursor-pointer"
-            >
-              Set Dr. Alex Smith (DOC-404)
-            </button>
+          {/* Quick Demo Credentials Presets (5 Doctors from DB) */}
+          <div className="pt-4 border-t border-[#B2BECF]/30 space-y-2">
+            <span className="text-xs font-extrabold text-[#202125]/80 uppercase tracking-wider block">
+              Quick Demo Presets (Select Doctor):
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {demoPresets.map((preset) => (
+                <button
+                  key={preset.code}
+                  type="button"
+                  onClick={() => {
+                    setDoctorId(preset.code);
+                    setDoctorName(preset.name);
+                  }}
+                  className={`text-xs px-3 py-1.5 rounded-xl border transition cursor-pointer font-semibold flex items-center gap-1 ${
+                    doctorId === preset.code
+                      ? 'bg-[#3A8F6F] text-white border-[#3A8F6F] shadow-sm'
+                      : 'bg-[#F1EFEA] hover:bg-[#B2BECF]/30 text-[#202125] border-[#B2BECF]'
+                  }`}
+                >
+                  <span>👨‍⚕️</span>
+                  <span>{preset.name}</span>
+                  <span className="text-[10px] opacity-75">({preset.code})</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </main>
   );
 }
+
