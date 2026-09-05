@@ -192,35 +192,35 @@ function PatientDetailInner({ patientId }: { patientId: string }) {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 px-4 py-8 md:py-12">
+    <main className="min-h-screen bg-[#F1EFEA] text-[#202125] px-4 py-8 md:py-12 font-sans">
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Navigation & Doctor Bar */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="flex items-center justify-between border-b border-[#B2BECF]/40 pb-4">
           <Link
             href="/hospital/doctor/scan"
-            className="text-xs font-extrabold text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer bg-slate-900 border border-slate-800 px-3.5 py-2 rounded-xl transition"
+            className="text-xs font-extrabold text-[#202125]/70 hover:text-[#FD7F66] flex items-center gap-1 cursor-pointer bg-white border border-[#B2BECF]/60 px-3.5 py-2 rounded-xl transition shadow-sm"
           >
             ← Scan Another Patient
           </Link>
           <div className="text-right">
-            <span className="text-xs font-extrabold text-emerald-400 block font-mono">ATTENDING PHYSICIAN</span>
-            <span className="text-xs text-white font-bold">{doctorInfo.doctorName} ({doctorInfo.doctorId})</span>
+            <span className="text-xs font-extrabold text-[#3A8F6F] block font-mono">ATTENDING PHYSICIAN</span>
+            <span className="text-xs text-[#202125] font-bold">{doctorInfo.doctorName} ({doctorInfo.doctorId})</span>
           </div>
         </div>
 
         {noticeMessage && (
-          <div className="p-3 bg-emerald-950/80 border border-emerald-700 text-emerald-200 rounded-xl text-xs font-bold flex items-center justify-between">
+          <div className="p-3 bg-[#3A8F6F]/10 border border-[#3A8F6F]/40 text-[#3A8F6F] rounded-xl text-xs font-bold flex items-center justify-between shadow-sm">
             <span>✓ {noticeMessage}</span>
-            <button onClick={() => setNoticeMessage('')} className="text-emerald-400 hover:text-white">✕</button>
+            <button onClick={() => setNoticeMessage('')} className="text-[#3A8F6F] hover:text-[#202125]">✕</button>
           </div>
         )}
 
         {!patient ? (
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 text-center space-y-4">
+          <div className="bg-white border border-[#B2BECF]/60 rounded-3xl p-8 text-center space-y-4 shadow-sm">
             <span className="text-4xl">⚠️</span>
-            <h2 className="text-xl font-black text-white">Patient Record Not Found</h2>
-            <p className="text-xs text-slate-400">The requested patient ID could not be retrieved.</p>
-            <Link href="/hospital/doctor/scan" className="inline-block px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold">
+            <h2 className="text-xl font-black text-[#202125]">Patient Record Not Found</h2>
+            <p className="text-xs text-[#202125]/70">The requested patient ID could not be retrieved.</p>
+            <Link href="/hospital/doctor/scan" className="inline-block px-4 py-2 bg-[#3A8F6F] text-white rounded-xl text-xs font-bold">
               Return to QR Scanner
             </Link>
           </div>
@@ -228,33 +228,33 @@ function PatientDetailInner({ patientId }: { patientId: string }) {
           <>
             {/* ARRIVING CASUALTY HIGHLIGHTED BANNER */}
             {arrivingCasualty && (
-              <div className="bg-rose-950/90 border-2 border-rose-600 rounded-3xl p-5 space-y-3 shadow-2xl animate-pulse">
-                <div className="flex items-center justify-between border-b border-rose-800 pb-2">
+              <div className="bg-[#D64545]/10 border-2 border-[#D64545] rounded-3xl p-5 space-y-3 shadow-md animate-pulse">
+                <div className="flex items-center justify-between border-b border-[#D64545]/30 pb-2">
                   <div className="flex items-center gap-2">
                     <span className="text-xl">🚨</span>
-                    <span className="text-xs font-black uppercase tracking-wider text-rose-200">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#D64545]">
                       INCOMING EMERGENCY CASUALTY ARRIVING
                     </span>
                   </div>
-                  <span className="px-3 py-1 bg-rose-900 border border-rose-500 text-white text-xs font-black rounded-lg uppercase">
+                  <span className="px-3 py-1 bg-[#D64545] border border-[#D64545] text-white text-xs font-black rounded-lg uppercase">
                     STATUS: {arrivingCasualty.handover_status?.toUpperCase() || 'EN ROUTE'}
                   </span>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                   <div>
-                    <span className="text-slate-300 font-bold block">Presentation / Injury:</span>
-                    <span className="text-white font-extrabold text-sm">{arrivingCasualty.injury_type}</span>
+                    <span className="text-[#202125]/70 font-bold block">Presentation / Injury:</span>
+                    <span className="text-[#202125] font-extrabold text-sm">{arrivingCasualty.injury_type}</span>
                   </div>
                   <div>
-                    <span className="text-slate-300 font-bold block">Severity Rating:</span>
-                    <span className="inline-block px-2.5 py-0.5 bg-rose-900 border border-rose-400 text-rose-100 font-black text-xs uppercase rounded-md mt-0.5">
+                    <span className="text-[#202125]/70 font-bold block">Severity Rating:</span>
+                    <span className="inline-block px-2.5 py-0.5 bg-[#D64545] text-white font-black text-xs uppercase rounded-md mt-0.5">
                       {arrivingCasualty.severity}
                     </span>
                   </div>
-                  <div className="sm:col-span-2 bg-rose-950/60 p-2.5 rounded-xl border border-rose-800/80">
-                    <span className="text-rose-300 font-bold block mb-0.5">Dispatch Routing Rationale:</span>
-                    <p className="text-rose-100 font-semibold text-xs leading-snug">
+                  <div className="sm:col-span-2 bg-white/80 p-2.5 rounded-xl border border-[#D64545]/30">
+                    <span className="text-[#D64545] font-bold block mb-0.5">Dispatch Routing Rationale:</span>
+                    <p className="text-[#202125] font-semibold text-xs leading-snug">
                       {arrivingCasualty.routing_reason}
                     </p>
                   </div>
@@ -263,16 +263,16 @@ function PatientDetailInner({ patientId }: { patientId: string }) {
             )}
 
             {/* PATIENT RECORD CARD */}
-            <div className="bg-slate-900 border-2 border-slate-800 rounded-3xl p-6 space-y-6 shadow-2xl">
-              <div className="flex items-start justify-between border-b border-slate-800 pb-4">
+            <div className="bg-white border-2 border-[#B2BECF]/60 rounded-3xl p-6 space-y-6 shadow-sm">
+              <div className="flex items-start justify-between border-b border-[#B2BECF]/30 pb-4">
                 <div>
-                  <span className="text-[10px] uppercase font-black text-emerald-400 tracking-wider block">
+                  <span className="text-[10px] uppercase font-black text-[#3A8F6F] tracking-wider block">
                     PATIENT MEDICAL FILE • QR: {patient.qr_code}
                   </span>
-                  <h1 className="text-3xl font-black text-white">{patient.name}</h1>
+                  <h1 className="text-3xl font-black text-[#202125]">{patient.name}</h1>
                 </div>
-                <div className="bg-rose-950 border border-rose-700 text-rose-200 px-4 py-2 rounded-2xl text-center">
-                  <span className="text-[10px] uppercase font-bold block text-rose-300">Blood Group</span>
+                <div className="bg-[#FD7F66]/10 border border-[#FD7F66]/40 text-[#FD7F66] px-4 py-2 rounded-2xl text-center">
+                  <span className="text-[10px] uppercase font-bold block text-[#FD7F66]">Blood Group</span>
                   <span className="text-2xl font-black">{patient.blood_group}</span>
                 </div>
               </div>
@@ -280,52 +280,52 @@ function PatientDetailInner({ patientId }: { patientId: string }) {
               {/* Patient Details Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 {/* Allergies */}
-                <div className="bg-slate-950 border border-slate-800 rounded-2xl p-4 space-y-2">
-                  <span className="font-extrabold text-slate-300 uppercase tracking-wider block">
+                <div className="bg-[#F1EFEA] border border-[#B2BECF]/60 rounded-2xl p-4 space-y-2">
+                  <span className="font-extrabold text-[#202125] uppercase tracking-wider block">
                     ⚠️ Known Medical Allergies
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {patient.allergies && patient.allergies.length > 0 ? (
                       patient.allergies.map((allergy) => (
-                        <span key={allergy} className="px-2.5 py-1 bg-rose-950 text-rose-300 border border-rose-800 rounded-lg font-bold">
+                        <span key={allergy} className="px-2.5 py-1 bg-[#D64545]/15 text-[#D64545] border border-[#D64545]/30 rounded-lg font-bold">
                           {allergy}
                         </span>
                       ))
                     ) : (
-                      <span className="text-slate-500 italic">No known allergies</span>
+                      <span className="text-[#202125]/50 italic">No known allergies</span>
                     )}
                   </div>
                 </div>
 
                 {/* Chronic Conditions */}
-                <div className="bg-slate-950 border border-slate-800 rounded-2xl p-4 space-y-2">
-                  <span className="font-extrabold text-slate-300 uppercase tracking-wider block">
+                <div className="bg-[#F1EFEA] border border-[#B2BECF]/60 rounded-2xl p-4 space-y-2">
+                  <span className="font-extrabold text-[#202125] uppercase tracking-wider block">
                     🩺 Chronic Health Conditions
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {patient.chronic_conditions && patient.chronic_conditions.length > 0 ? (
                       patient.chronic_conditions.map((cond) => (
-                        <span key={cond} className="px-2.5 py-1 bg-amber-950 text-amber-300 border border-amber-800 rounded-lg font-bold">
+                        <span key={cond} className="px-2.5 py-1 bg-[#E0A030]/15 text-[#E0A030] border border-[#E0A030]/40 rounded-lg font-bold">
                           {cond}
                         </span>
                       ))
                     ) : (
-                      <span className="text-slate-500 italic">No chronic conditions listed</span>
+                      <span className="text-[#202125]/50 italic">No chronic conditions listed</span>
                     )}
                   </div>
                 </div>
 
                 {/* Emergency Contact */}
-                <div className="sm:col-span-2 bg-slate-950 border border-slate-800 rounded-2xl p-4 flex items-center justify-between">
+                <div className="sm:col-span-2 bg-[#F1EFEA] border border-[#B2BECF]/60 rounded-2xl p-4 flex items-center justify-between">
                   <div>
-                    <span className="font-extrabold text-slate-400 uppercase tracking-wider block text-[10px]">
+                    <span className="font-extrabold text-[#202125]/60 uppercase tracking-wider block text-[10px]">
                       EMERGENCY CONTACT
                     </span>
-                    <span className="text-sm font-black text-white">{patient.emergency_contact_name}</span>
+                    <span className="text-sm font-black text-[#202125]">{patient.emergency_contact_name}</span>
                   </div>
                   <a
                     href={`tel:${patient.emergency_contact_phone}`}
-                    className="h-11 px-4 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-xl flex items-center gap-1.5 transition"
+                    className="h-11 px-4 bg-[#3A8F6F] hover:bg-[#2e745a] text-white font-bold rounded-xl flex items-center gap-1.5 transition shadow-sm"
                   >
                     📞 {patient.emergency_contact_phone}
                   </a>
@@ -334,31 +334,31 @@ function PatientDetailInner({ patientId }: { patientId: string }) {
             </div>
 
             {/* VISIT HISTORY SECTION */}
-            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4 shadow-xl">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                <h2 className="text-lg font-black text-white flex items-center gap-2">
+            <div className="bg-white border border-[#B2BECF]/60 rounded-3xl p-6 space-y-4 shadow-sm">
+              <div className="flex items-center justify-between border-b border-[#B2BECF]/30 pb-3">
+                <h2 className="text-lg font-black text-[#202125] flex items-center gap-2">
                   <span>📋</span> Visit History & Clinical Notes ({visits.length})
                 </h2>
-                <span className="text-xs text-slate-400">Most recent first</span>
+                <span className="text-xs text-[#202125]/60">Most recent first</span>
               </div>
 
               {visits.length === 0 ? (
-                <div className="py-8 text-center text-slate-500 text-xs font-semibold italic">
+                <div className="py-8 text-center text-[#202125]/50 text-xs font-semibold italic">
                   No prior clinical visits or prescriptions recorded for this patient yet.
                 </div>
               ) : (
                 <div className="space-y-3">
                   {visits.map((v) => (
-                    <div key={v.id} className="bg-slate-950 border border-slate-800 rounded-2xl p-4 space-y-2">
-                      <div className="flex items-center justify-between text-xs border-b border-slate-850 pb-2">
-                        <span className="font-extrabold text-emerald-400">
+                    <div key={v.id} className="bg-[#F1EFEA] border border-[#B2BECF]/50 rounded-2xl p-4 space-y-2">
+                      <div className="flex items-center justify-between text-xs border-b border-[#B2BECF]/30 pb-2">
+                        <span className="font-extrabold text-[#3A8F6F]">
                           {v.doctor_name || `Attending Doctor ID: ${v.doctor_user_id}`}
                         </span>
-                        <span className="text-slate-400 font-mono">
+                        <span className="text-[#202125]/60 font-mono">
                           📅 {new Date(v.visit_date).toLocaleString()}
                         </span>
                       </div>
-                      <p className="text-sm text-slate-200 font-medium leading-relaxed">
+                      <p className="text-sm text-[#202125] font-medium leading-relaxed">
                         {v.prescription_notes}
                       </p>
                     </div>
@@ -368,19 +368,19 @@ function PatientDetailInner({ patientId }: { patientId: string }) {
             </div>
 
             {/* NEW PRESCRIPTION / NOTES FORM */}
-            <div className="bg-slate-900 border-2 border-emerald-600/80 rounded-3xl p-6 space-y-4 shadow-2xl">
-              <div className="border-b border-slate-800 pb-3">
-                <h2 className="text-lg font-black text-white flex items-center gap-2">
+            <div className="bg-white border-2 border-[#3A8F6F] rounded-3xl p-6 space-y-4 shadow-md">
+              <div className="border-b border-[#B2BECF]/30 pb-3">
+                <h2 className="text-lg font-black text-[#202125] flex items-center gap-2">
                   <span>✍️</span> Record Clinical Notes & Prescription
                 </h2>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-[#202125]/75">
                   Attending Doctor: <strong>{doctorInfo.doctorName}</strong> ({doctorInfo.doctorId})
                 </p>
               </div>
 
               <form onSubmit={handleAddPrescription} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-extrabold text-[#202125]/80 uppercase tracking-wider mb-2">
                     Prescription / Clinical Notes for this Visit
                   </label>
                   <textarea
@@ -388,7 +388,7 @@ function PatientDetailInner({ patientId }: { patientId: string }) {
                     value={prescriptionNotes}
                     onChange={(e) => setPrescriptionNotes(e.target.value)}
                     placeholder="Enter clinical observations, medications administered, prescribed dosage, or discharge instructions..."
-                    className="w-full bg-slate-950 border border-slate-700 rounded-2xl p-4 text-white text-sm font-medium focus:outline-none focus:border-emerald-400 leading-relaxed"
+                    className="w-full bg-[#F1EFEA] border border-[#B2BECF] rounded-2xl p-4 text-[#202125] text-sm font-medium focus:outline-none focus:border-[#3A8F6F] leading-relaxed"
                     required
                   />
                 </div>
@@ -397,7 +397,7 @@ function PatientDetailInner({ patientId }: { patientId: string }) {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="h-14 px-8 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-sm rounded-2xl shadow-xl shadow-emerald-950/60 transition cursor-pointer flex items-center gap-2"
+                    className="h-14 px-8 bg-[#3A8F6F] hover:bg-[#2e745a] text-white font-black text-sm rounded-2xl shadow-md transition cursor-pointer flex items-center gap-2"
                   >
                     <span>💾</span>
                     <span>SAVE PRESCRIPTION & VISIT RECORD</span>
@@ -415,7 +415,7 @@ function PatientDetailInner({ patientId }: { patientId: string }) {
 export default function DoctorPatientDetailPage({ params }: { params: Promise<{ patientId: string }> }) {
   const resolvedParams = use(params);
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-950 text-white p-8 text-center font-bold">Loading Patient Record...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-[#F1EFEA] text-[#202125] p-8 text-center font-bold">Loading Patient Record...</div>}>
       <PatientDetailInner patientId={resolvedParams.patientId} />
     </Suspense>
   );

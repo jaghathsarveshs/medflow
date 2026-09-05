@@ -167,52 +167,52 @@ function DoctorScanContent() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 px-4 py-8 md:py-12">
+    <main className="min-h-screen bg-[#F1EFEA] text-[#202125] px-4 py-8 md:py-12 font-sans">
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Navigation Bar */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between border-b border-[#B2BECF]/40 pb-4">
           <Link
             href="/hospital/doctor"
-            className="text-xs font-extrabold text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer bg-slate-900 border border-slate-800 px-3.5 py-2 rounded-xl transition"
+            className="text-xs font-extrabold text-[#202125]/70 hover:text-[#FD7F66] flex items-center gap-1 cursor-pointer bg-white border border-[#B2BECF]/60 px-3.5 py-2 rounded-xl transition shadow-sm"
           >
             ← Change Doctor
           </Link>
           <div className="text-right">
-            <span className="text-xs font-extrabold text-emerald-400 block font-mono">ON DUTY</span>
-            <span className="text-xs text-white font-bold">{doctorName} ({doctorId})</span>
+            <span className="text-xs font-extrabold text-[#3A8F6F] block font-mono">ON DUTY</span>
+            <span className="text-xs text-[#202125] font-bold">{doctorName} ({doctorId})</span>
           </div>
         </div>
 
         {/* Page Title */}
         <header className="space-y-1">
-          <span className="text-xs uppercase font-extrabold tracking-widest text-emerald-400">
+          <span className="text-xs uppercase font-extrabold tracking-widest text-[#FD7F66]">
             PATIENT IDENTIFICATION
           </span>
-          <h1 className="text-3xl font-black tracking-tight text-white">Scan Patient QR Code</h1>
-          <p className="text-sm text-slate-400">
+          <h1 className="text-3xl font-black tracking-tight text-[#202125]">Scan Patient QR Code</h1>
+          <p className="text-sm text-[#202125]/75 font-medium">
             Use camera scanner or enter code manually to retrieve emergency health records and prescription history.
           </p>
         </header>
 
         {errorMsg && (
-          <div className="p-4 bg-rose-950/80 border border-rose-600 text-rose-200 rounded-2xl text-xs font-bold space-y-1">
+          <div className="p-4 bg-[#D64545]/10 border border-[#D64545]/40 text-[#D64545] rounded-2xl text-xs font-bold space-y-1 shadow-sm">
             <div className="flex items-center justify-between">
               <span>⚠️ {errorMsg}</span>
-              <button onClick={() => setErrorMsg('')} className="text-rose-300 hover:text-white">✕</button>
+              <button onClick={() => setErrorMsg('')} className="text-[#D64545] hover:text-[#202125]">✕</button>
             </div>
           </div>
         )}
 
         {/* Camera QR Scanner Box */}
-        <div className="bg-slate-900 border-2 border-slate-800 rounded-3xl p-6 space-y-4 shadow-xl">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h2 className="text-lg font-black text-white flex items-center gap-2">
+        <div className="bg-white border-2 border-[#B2BECF]/60 rounded-3xl p-6 space-y-4 shadow-sm">
+          <div className="flex items-center justify-between border-b border-[#B2BECF]/30 pb-3">
+            <h2 className="text-lg font-black text-[#202125] flex items-center gap-2">
               <span>📷</span> Camera QR Scanner
             </h2>
             {isScanning && (
               <button
                 onClick={handleStopScanner}
-                className="text-xs font-bold text-rose-400 hover:text-rose-300 bg-rose-950/80 border border-rose-800 px-3 py-1.5 rounded-lg"
+                className="text-xs font-bold text-[#D64545] hover:text-[#D64545] bg-[#D64545]/10 border border-[#D64545]/30 px-3 py-1.5 rounded-lg"
               >
                 Stop Camera
               </button>
@@ -220,15 +220,15 @@ function DoctorScanContent() {
           </div>
 
           {/* QR Video Viewport Container */}
-          <div className="relative w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 min-h-[250px] flex items-center justify-center">
+          <div className="relative w-full rounded-2xl overflow-hidden bg-[#202125] border border-[#B2BECF]/40 min-h-[250px] flex items-center justify-center">
             {/* Empty target div for Html5Qrcode - React must NOT touch inside children of this element */}
             <div id="qr-reader" className="w-full h-full" />
 
             {!isScanning && (
-              <div className="absolute inset-0 bg-slate-950/90 flex flex-col items-center justify-center text-center p-6 space-y-2 pointer-events-none">
+              <div className="absolute inset-0 bg-[#202125]/90 flex flex-col items-center justify-center text-center p-6 space-y-2 pointer-events-none">
                 <span className="text-4xl block">🔍</span>
-                <p className="font-semibold text-slate-400">Camera scanner inactive</p>
-                <span className="text-[11px] text-slate-500">Click button below to start live camera QR scan</span>
+                <p className="font-semibold text-white">Camera scanner inactive</p>
+                <span className="text-[11px] text-[#B2BECF]">Click button below to start live camera QR scan</span>
               </div>
             )}
           </div>
@@ -236,14 +236,14 @@ function DoctorScanContent() {
           {!isScanning ? (
             <button
               onClick={handleStartScanner}
-              className="w-full h-13 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm rounded-xl shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
+              className="w-full h-13 bg-[#3A8F6F] hover:bg-[#2e745a] text-white font-extrabold text-sm rounded-xl shadow-md transition cursor-pointer flex items-center justify-center gap-2"
             >
               <span>📷</span> START CAMERA QR SCAN
             </button>
           ) : (
             <button
               onClick={handleStopScanner}
-              className="w-full h-13 bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-sm rounded-xl shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
+              className="w-full h-13 bg-[#D64545] hover:bg-[#b53838] text-white font-extrabold text-sm rounded-xl shadow-md transition cursor-pointer flex items-center justify-center gap-2"
             >
               <span>⏹️</span> STOP CAMERA SCAN
             </button>
@@ -252,12 +252,12 @@ function DoctorScanContent() {
         </div>
 
         {/* Manual Fallback Lookup Box */}
-        <div className="bg-slate-900 border-2 border-slate-800 rounded-3xl p-6 space-y-4 shadow-xl">
-          <div className="border-b border-slate-800 pb-3">
-            <h2 className="text-lg font-black text-white flex items-center gap-2">
+        <div className="bg-white border-2 border-[#B2BECF]/60 rounded-3xl p-6 space-y-4 shadow-sm">
+          <div className="border-b border-[#B2BECF]/30 pb-3">
+            <h2 className="text-lg font-black text-[#202125] flex items-center gap-2">
               <span>⌨️</span> Manual QR Lookup (Fallback)
             </h2>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-[#202125]/75 font-medium">
               Type or paste patient QR code directly if camera is unavailable or code is damaged.
             </p>
           </div>
@@ -269,13 +269,13 @@ function DoctorScanContent() {
                 value={manualCode}
                 onChange={(e) => setManualCode(e.target.value)}
                 placeholder="e.g. QR-DEMO-001"
-                className="flex-1 h-13 bg-slate-950 border border-slate-700 rounded-xl px-4 text-white text-base font-mono focus:outline-none focus:border-emerald-400"
+                className="flex-1 h-13 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-4 text-[#202125] text-base font-mono focus:outline-none focus:border-[#FD7F66]"
                 required
               />
               <button
                 type="submit"
                 disabled={isLoading}
-                className="h-13 px-6 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-black rounded-xl shadow-md transition cursor-pointer shrink-0"
+                className="h-13 px-6 bg-[#FD7F66] hover:bg-[#e06a52] text-white text-sm font-black rounded-xl shadow-md transition cursor-pointer shrink-0"
               >
                 {isLoading ? 'Searching...' : 'LOOK UP'}
               </button>
@@ -283,8 +283,8 @@ function DoctorScanContent() {
           </form>
 
           {/* Quick Seed QR Shortcuts */}
-          <div className="pt-2 border-t border-slate-800/80">
-            <span className="text-xs font-bold text-slate-400 block mb-2">Test Seed QR Codes:</span>
+          <div className="pt-2 border-t border-[#B2BECF]/30">
+            <span className="text-xs font-bold text-[#202125]/70 block mb-2">Test Seed QR Codes:</span>
             <div className="flex flex-wrap gap-2">
               {SEED_PATIENT_RECORDS.map((p) => (
                 <button
@@ -294,7 +294,7 @@ function DoctorScanContent() {
                     setManualCode(p.qr_code);
                     performLookup(p.qr_code);
                   }}
-                  className="px-3 py-1.5 bg-slate-950 hover:bg-slate-800 border border-slate-700 text-emerald-300 rounded-lg text-xs font-mono font-bold transition cursor-pointer"
+                  className="px-3 py-1.5 bg-[#F1EFEA] hover:bg-[#B2BECF]/30 border border-[#B2BECF] text-[#3A8F6F] rounded-lg text-xs font-mono font-bold transition cursor-pointer"
                 >
                   ⚡ {p.qr_code} ({p.name})
                 </button>
@@ -309,7 +309,7 @@ function DoctorScanContent() {
 
 export default function DoctorScanPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-950 text-white p-8 text-center font-bold">Loading QR Scanner...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-[#F1EFEA] text-[#202125] p-8 text-center font-bold">Loading QR Scanner...</div>}>
       <DoctorScanContent />
     </Suspense>
   );

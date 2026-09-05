@@ -357,20 +357,20 @@ export default function HospitalRoomsPage({ params }: { params: Promise<{ id: st
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 px-4 py-8 md:py-12">
+    <main className="min-h-screen bg-[#F1EFEA] text-[#202125] px-4 py-8 md:py-12 font-sans">
       <div className="max-w-5xl mx-auto space-y-6">
         {/* Navigation */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="flex items-center justify-between border-b border-[#B2BECF]/40 pb-4">
           <Link
             href="/hospital/list"
-            className="text-xs font-extrabold text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer bg-slate-900 border border-slate-800 px-3.5 py-2 rounded-xl transition"
+            className="text-xs font-extrabold text-[#202125]/70 hover:text-[#FD7F66] flex items-center gap-1 cursor-pointer bg-white border border-[#B2BECF]/60 px-3.5 py-2 rounded-xl transition shadow-sm"
           >
             ← Back to Hospitals List
           </Link>
 
           <button
             onClick={handleOpenAddModal}
-            className="h-10 px-4 bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold text-xs rounded-xl shadow-lg transition cursor-pointer flex items-center gap-1.5"
+            className="h-10 px-4 bg-[#FD7F66] hover:bg-[#e06a52] text-white font-extrabold text-xs rounded-xl shadow-md transition cursor-pointer flex items-center gap-1.5"
           >
             <span>+</span> Add Room
           </button>
@@ -378,75 +378,75 @@ export default function HospitalRoomsPage({ params }: { params: Promise<{ id: st
 
         {/* Hospital Header */}
         <header className="space-y-1">
-          <span className="text-xs uppercase font-extrabold tracking-widest text-cyan-400">
+          <span className="text-xs uppercase font-extrabold tracking-widest text-[#FD7F66]">
             ROOM-LEVEL BED & STAFFING MANAGEMENT
           </span>
-          <h1 className="text-3xl font-black tracking-tight text-white">
+          <h1 className="text-3xl font-black tracking-tight text-[#202125]">
             {hospital ? hospital.name : 'Hospital Rooms'}
           </h1>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-[#202125]/75 font-medium">
             📍 {hospital?.address || 'Healthcare District'}
           </p>
         </header>
 
         {noticeMessage && (
-          <div className="p-3 bg-emerald-950/80 border border-emerald-700 text-emerald-200 rounded-xl text-xs font-bold flex items-center justify-between">
+          <div className="p-3 bg-[#3A8F6F]/10 border border-[#3A8F6F]/40 text-[#3A8F6F] rounded-xl text-xs font-bold flex items-center justify-between shadow-sm">
             <span>✓ {noticeMessage}</span>
-            <button onClick={() => setNoticeMessage('')} className="text-emerald-400 hover:text-white">
+            <button onClick={() => setNoticeMessage('')} className="text-[#3A8F6F] hover:text-[#202125]">
               ✕
             </button>
           </div>
         )}
 
         {/* Rooms Table / List */}
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h2 className="text-lg font-black text-white flex items-center gap-2">
+        <div className="bg-white border-2 border-[#B2BECF]/60 rounded-2xl p-4 md:p-6 shadow-sm space-y-4">
+          <div className="flex items-center justify-between border-b border-[#B2BECF]/30 pb-3">
+            <h2 className="text-lg font-black text-[#202125] flex items-center gap-2">
               <span>🛏️</span> Hospital Rooms & Wards ({rooms.length})
             </h2>
-            <span className="text-xs text-slate-400">Live Availability Status</span>
+            <span className="text-xs text-[#202125]/60 font-semibold">Live Availability Status</span>
           </div>
 
           {isLoading ? (
-            <div className="py-8 text-center text-slate-400 text-sm font-semibold">Loading rooms...</div>
+            <div className="py-8 text-center text-[#202125]/60 text-sm font-semibold">Loading rooms...</div>
           ) : rooms.length === 0 ? (
             <div className="py-12 text-center space-y-3">
               <span className="text-4xl">🏥</span>
-              <p className="text-sm text-slate-400 font-medium">No rooms configured for this hospital yet.</p>
+              <p className="text-sm text-[#202125]/70 font-medium">No rooms configured for this hospital yet.</p>
               <button
                 onClick={handleOpenAddModal}
-                className="h-10 px-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl"
+                className="h-10 px-4 bg-[#FD7F66] hover:bg-[#e06a52] text-white font-bold text-xs rounded-xl shadow-sm"
               >
                 + Add First Room
               </button>
             </div>
           ) : (
-            <div className="divide-y divide-slate-800/80">
+            <div className="divide-y divide-[#B2BECF]/30">
               {rooms.map((room) => {
                 const isDoctorAvailable = room.doctor_status === 'available';
 
                 return (
                   <div
                     key={room.id}
-                    className="py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-950/40 p-3 rounded-xl transition"
+                    className="py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-[#F1EFEA]/60 p-3 rounded-xl transition"
                   >
                     {/* Room Details */}
                     <div className="space-y-1 min-w-0 flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="text-base font-extrabold text-white">{room.room_type}</h3>
+                        <h3 className="text-base font-extrabold text-[#202125]">{room.room_type}</h3>
                         <span
                           className={`px-2.5 py-0.5 rounded-full text-[11px] font-black uppercase border ${
                             isDoctorAvailable
-                              ? 'bg-emerald-950/90 border-emerald-600 text-emerald-300'
-                              : 'bg-rose-950/90 border-rose-600 text-rose-300'
+                              ? 'bg-[#3A8F6F]/15 border-[#3A8F6F]/40 text-[#3A8F6F]'
+                              : 'bg-[#D64545]/15 border-[#D64545]/40 text-[#D64545]'
                           }`}
                         >
                           Doctor: {isDoctorAvailable ? 'Available' : 'Busy'}
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-3 text-xs text-slate-400">
-                        <span className="font-semibold text-cyan-300">
+                      <div className="flex items-center gap-3 text-xs text-[#202125]/75">
+                        <span className="font-semibold text-[#FD7F66]">
                           Specialization: <strong>{room.specialization || 'General'}</strong>
                         </span>
                       </div>
@@ -455,10 +455,10 @@ export default function HospitalRoomsPage({ params }: { params: Promise<{ id: st
                     {/* Capacity & Actions */}
                     <div className="flex items-center gap-4 shrink-0">
                       {/* Bed Status */}
-                      <div className="bg-slate-950 px-3 py-2 rounded-xl border border-slate-800 text-center min-w-[120px]">
-                        <span className="text-xs font-bold text-slate-400 block">Bed Capacity</span>
-                        <span className="text-sm font-black text-white">
-                          <strong className="text-emerald-400">{room.beds_available}</strong> / {room.beds_total} Available
+                      <div className="bg-[#F1EFEA] px-3 py-2 rounded-xl border border-[#B2BECF]/60 text-center min-w-[120px]">
+                        <span className="text-xs font-bold text-[#202125]/60 block">Bed Capacity</span>
+                        <span className="text-sm font-black text-[#202125]">
+                          <strong className="text-[#3A8F6F]">{room.beds_available}</strong> / {room.beds_total} Available
                         </span>
                       </div>
 
@@ -466,13 +466,13 @@ export default function HospitalRoomsPage({ params }: { params: Promise<{ id: st
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleOpenEditModal(room)}
-                          className="h-10 px-3 bg-slate-800 hover:bg-slate-700 text-cyan-300 hover:text-white font-bold text-xs rounded-xl border border-slate-700 transition cursor-pointer"
+                          className="h-10 px-3 bg-[#F1EFEA] hover:bg-[#B2BECF]/30 text-[#202125] font-bold text-xs rounded-xl border border-[#B2BECF] transition cursor-pointer"
                         >
                           ✏️ Edit
                         </button>
                         <button
                           onClick={() => handleDeleteRoom(room.id, room.room_type)}
-                          className="h-10 px-3 bg-rose-950/70 hover:bg-rose-900 text-rose-300 font-bold text-xs rounded-xl border border-rose-800/80 transition cursor-pointer"
+                          className="h-10 px-3 bg-[#D64545]/10 hover:bg-[#D64545]/20 text-[#D64545] font-bold text-xs rounded-xl border border-[#D64545]/30 transition cursor-pointer"
                         >
                           🗑️ Delete
                         </button>
@@ -487,30 +487,30 @@ export default function HospitalRoomsPage({ params }: { params: Promise<{ id: st
 
         {/* Modal / Overlay Form for Add & Edit Room */}
         {showModal && (
-          <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-slate-900 border-2 border-cyan-500 rounded-3xl p-6 max-w-lg w-full shadow-2xl space-y-5 animate-in fade-in zoom-in duration-200">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                <h3 className="text-xl font-black text-white flex items-center gap-2">
+          <div className="fixed inset-0 z-50 bg-[#202125]/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="bg-white border-2 border-[#FD7F66] rounded-3xl p-6 max-w-lg w-full shadow-2xl space-y-5 animate-in fade-in zoom-in duration-200">
+              <div className="flex items-center justify-between border-b border-[#B2BECF]/40 pb-3">
+                <h3 className="text-xl font-black text-[#202125] flex items-center gap-2">
                   <span>{editingRoom ? '✏️' : '🛏️'}</span>
                   {editingRoom ? 'Edit Hospital Room' : 'Add New Hospital Room'}
                 </h3>
                 <button
                   onClick={() => setShowModal(false)}
-                  className="text-slate-400 hover:text-white font-bold text-sm"
+                  className="text-[#202125]/60 hover:text-[#202125] font-bold text-sm"
                 >
                   ✕
                 </button>
               </div>
 
               {formError && (
-                <div className="p-3 bg-rose-950/90 border border-rose-600 text-rose-200 rounded-xl text-xs font-bold">
+                <div className="p-3 bg-[#D64545]/10 border border-[#D64545]/40 text-[#D64545] rounded-xl text-xs font-bold">
                   ⚠️ {formError}
                 </div>
               )}
 
               <form onSubmit={handleSaveRoom} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-extrabold text-[#202125]/80 uppercase tracking-wider mb-1">
                     Room / Ward Name & Type
                   </label>
                   <input
@@ -518,14 +518,14 @@ export default function HospitalRoomsPage({ params }: { params: Promise<{ id: st
                     value={roomType}
                     onChange={(e) => setRoomType(e.target.value)}
                     placeholder="e.g. ICU Ward A (Neuro-Trauma)"
-                    className="w-full h-12 bg-slate-950 border border-slate-700 rounded-xl px-3 text-white text-base focus:outline-none focus:border-cyan-400"
+                    className="w-full h-12 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-3 text-[#202125] text-base focus:outline-none focus:border-[#FD7F66]"
                     required
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-extrabold text-[#202125]/80 uppercase tracking-wider mb-1">
                       Total Beds
                     </label>
                     <input
@@ -533,13 +533,13 @@ export default function HospitalRoomsPage({ params }: { params: Promise<{ id: st
                       min={1}
                       value={bedsTotal}
                       onChange={(e) => setBedsTotal(parseInt(e.target.value) || 0)}
-                      className="w-full h-12 bg-slate-950 border border-slate-700 rounded-xl px-3 text-white text-base focus:outline-none focus:border-cyan-400"
+                      className="w-full h-12 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-3 text-[#202125] text-base focus:outline-none focus:border-[#FD7F66]"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-extrabold text-[#202125]/80 uppercase tracking-wider mb-1">
                       Beds Available
                     </label>
                     <input
@@ -548,14 +548,14 @@ export default function HospitalRoomsPage({ params }: { params: Promise<{ id: st
                       max={bedsTotal}
                       value={bedsAvailable}
                       onChange={(e) => setBedsAvailable(parseInt(e.target.value) || 0)}
-                      className="w-full h-12 bg-slate-950 border border-slate-700 rounded-xl px-3 text-white text-base focus:outline-none focus:border-cyan-400"
+                      className="w-full h-12 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-3 text-[#202125] text-base focus:outline-none focus:border-[#FD7F66]"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-extrabold text-[#202125]/80 uppercase tracking-wider mb-1">
                     Medical Specialization
                   </label>
                   <input
@@ -563,37 +563,37 @@ export default function HospitalRoomsPage({ params }: { params: Promise<{ id: st
                     value={specialization}
                     onChange={(e) => setSpecialization(e.target.value)}
                     placeholder="e.g. Neurology, Cardiology, Trauma Surgery"
-                    className="w-full h-12 bg-slate-950 border border-slate-700 rounded-xl px-3 text-white text-base focus:outline-none focus:border-cyan-400"
+                    className="w-full h-12 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-3 text-[#202125] text-base focus:outline-none focus:border-[#FD7F66]"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-extrabold text-[#202125]/80 uppercase tracking-wider mb-1">
                     On-Duty Doctor Status
                   </label>
                   <select
                     value={doctorStatus}
                     onChange={(e) => setDoctorStatus(e.target.value as 'available' | 'busy')}
-                    className="w-full h-12 bg-slate-950 border border-slate-700 rounded-xl px-3 text-white text-base font-semibold focus:outline-none focus:border-cyan-400"
+                    className="w-full h-12 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-3 text-[#202125] text-base font-semibold focus:outline-none focus:border-[#FD7F66]"
                   >
                     <option value="available">🟢 Available (On-Duty & Ready)</option>
                     <option value="busy">🔴 Busy (In Surgery / Unavailable)</option>
                   </select>
                 </div>
 
-                <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
+                <div className="flex items-center justify-end gap-3 pt-3 border-t border-[#B2BECF]/40">
                   <button
                     type="button"
                     onClick={() => setShowModal(false)}
-                    className="h-12 px-4 text-xs font-bold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl"
+                    className="h-12 px-4 text-xs font-bold text-[#202125]/70 bg-[#F1EFEA] hover:bg-[#B2BECF]/30 rounded-xl border border-[#B2BECF]"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="h-12 px-6 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-black rounded-xl shadow-lg transition cursor-pointer"
+                    className="h-12 px-6 bg-[#FD7F66] hover:bg-[#e06a52] text-white text-sm font-black rounded-xl shadow-md transition cursor-pointer"
                   >
                     {isSubmitting ? 'Saving...' : editingRoom ? 'Save Changes' : 'Add Room'}
                   </button>

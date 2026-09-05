@@ -107,15 +107,15 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-xl mx-auto space-y-6 pb-12">
+    <form onSubmit={handleSubmit} className="w-full max-w-xl mx-auto space-y-6 pb-12 font-sans">
       {/* Header Banner */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+      <div className="bg-white border-2 border-[#B2BECF]/60 rounded-2xl p-5 shadow-sm">
+        <div className="flex items-center justify-between border-b border-[#B2BECF]/30 pb-3 mb-4">
           <div>
-            <span className="text-xs uppercase font-extrabold tracking-wider text-rose-400">Emergency Response Intake</span>
-            <h1 className="text-2xl font-black tracking-tight text-white mt-0.5">Casualty & Triage Entry</h1>
+            <span className="text-xs uppercase font-extrabold tracking-wider text-[#FD7F66]">Emergency Response Intake</span>
+            <h1 className="text-2xl font-black tracking-tight text-[#202125] mt-0.5">Casualty & Triage Entry</h1>
           </div>
-          <span className="px-3 py-1 text-xs font-bold bg-rose-950/70 text-rose-300 border border-rose-800/80 rounded-full animate-pulse">
+          <span className="px-3 py-1 text-xs font-bold bg-[#D64545]/15 text-[#D64545] border border-[#D64545]/30 rounded-full animate-pulse">
             AMBULANCE ACTIVE
           </span>
         </div>
@@ -123,32 +123,32 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
         {/* Incident Details Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
           <div>
-            <label className="block text-xs font-bold text-slate-400 mb-1">Ambulance Unit ID</label>
+            <label className="block text-xs font-bold text-[#202125]/75 mb-1">Ambulance Unit ID</label>
             <input
               type="text"
               value={ambulanceId}
               onChange={(e) => setAmbulanceId(e.target.value)}
-              className="w-full h-12 bg-slate-950 border border-slate-800 rounded-xl px-3 text-white font-mono text-base focus:outline-none focus:border-rose-500"
+              className="w-full h-12 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-3 text-[#202125] font-mono text-base focus:outline-none focus:border-[#FD7F66]"
               required
             />
           </div>
           <div>
-            <label className="block text-xs font-bold text-slate-400 mb-1">Reported By Crew</label>
+            <label className="block text-xs font-bold text-[#202125]/75 mb-1">Reported By Crew</label>
             <input
               type="text"
               value={reportedBy}
               onChange={(e) => setReportedBy(e.target.value)}
-              className="w-full h-12 bg-slate-950 border border-slate-800 rounded-xl px-3 text-white text-base focus:outline-none focus:border-rose-500"
+              className="w-full h-12 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-3 text-[#202125] text-base focus:outline-none focus:border-[#FD7F66]"
               required
             />
           </div>
           <div className="sm:col-span-2">
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-xs font-bold text-slate-400">Accident Location Coordinates</label>
+              <label className="block text-xs font-bold text-[#202125]/75">Accident Location Coordinates</label>
               <button
                 type="button"
                 onClick={handleUseGPS}
-                className="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 cursor-pointer"
+                className="text-xs text-[#FD7F66] hover:underline font-semibold flex items-center gap-1 cursor-pointer"
               >
                 📍 Use Device GPS
               </button>
@@ -157,7 +157,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
               type="text"
               value={locationAddress}
               onChange={(e) => setLocationAddress(e.target.value)}
-              className="w-full h-12 bg-slate-950 border border-slate-800 rounded-xl px-3 text-white text-base focus:outline-none focus:border-rose-500"
+              className="w-full h-12 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-3 text-[#202125] text-base focus:outline-none focus:border-[#FD7F66]"
               required
             />
           </div>
@@ -167,29 +167,29 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
       {/* Casualties Card Stack */}
       <div className="space-y-4">
         <div className="flex items-center justify-between px-1">
-          <h2 className="text-lg font-extrabold text-white flex items-center gap-2">
+          <h2 className="text-lg font-extrabold text-[#202125] flex items-center gap-2">
             Casualties Tagged ({casualties.length})
           </h2>
-          <span className="text-xs text-slate-400">Ordered by severity during routing</span>
+          <span className="text-xs text-[#202125]/60 font-medium">Ordered by severity during routing</span>
         </div>
 
         {casualties.map((cas, index) => {
           const severityClass =
             cas.derivedSeverity === 'critical'
-              ? 'bg-rose-950/80 border-rose-600 text-rose-200'
+              ? 'bg-[#D64545]/15 border-[#D64545]/40 text-[#D64545]'
               : cas.derivedSeverity === 'moderate'
-              ? 'bg-amber-950/80 border-amber-600 text-amber-200'
-              : 'bg-emerald-950/80 border-emerald-600 text-emerald-200';
+              ? 'bg-[#E0A030]/15 border-[#E0A030]/40 text-[#E0A030]'
+              : 'bg-[#3A8F6F]/15 border-[#3A8F6F]/40 text-[#3A8F6F]';
 
           return (
             <div
               key={cas.tempId}
-              className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-lg transition-all"
+              className="bg-white border-2 border-[#B2BECF]/60 rounded-2xl p-5 space-y-4 shadow-sm transition-all"
             >
               {/* Casualty Header */}
-              <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
+              <div className="flex items-center justify-between border-b border-[#B2BECF]/30 pb-3">
                 <div className="flex items-center gap-2">
-                  <span className="w-8 h-8 rounded-full bg-slate-800 text-slate-200 flex items-center justify-center font-bold text-sm">
+                  <span className="w-8 h-8 rounded-full bg-[#F1EFEA] text-[#202125] flex items-center justify-center font-black text-sm border border-[#B2BECF]/50">
                     #{index + 1}
                   </span>
                   <span className={`px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wide border ${severityClass}`}>
@@ -201,7 +201,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
                   <button
                     type="button"
                     onClick={() => removeCasualty(index)}
-                    className="h-10 px-3 text-xs font-bold text-rose-400 hover:text-rose-300 hover:bg-rose-950/50 rounded-xl transition cursor-pointer"
+                    className="h-10 px-3 text-xs font-bold text-[#D64545] hover:text-[#b53838] hover:bg-[#D64545]/10 rounded-xl transition cursor-pointer"
                   >
                     ✕ Remove
                   </button>
@@ -210,13 +210,13 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
 
               {/* Injury Type Selection */}
               <div>
-                <label className="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-extrabold text-[#202125]/80 uppercase tracking-wider mb-1.5">
                   Primary Injury / Presentation
                 </label>
                 <select
                   value={cas.injuryType}
                   onChange={(e) => updateCasualtyField(index, { injuryType: e.target.value })}
-                  className="w-full h-13 bg-slate-950 border border-slate-700 rounded-xl px-3 text-white text-base font-medium focus:ring-2 focus:ring-rose-500 focus:outline-none"
+                  className="w-full h-13 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-3 text-[#202125] text-base font-medium focus:ring-2 focus:ring-[#FD7F66] focus:outline-none"
                 >
                   {Object.entries(INJURY_TYPES).map(([key, item]) => (
                     <option key={key} value={key}>
@@ -228,7 +228,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
 
               {/* Quick Triage Checkboxes (Large 48px tap targets for ambulance crew) */}
               <div>
-                <label className="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-extrabold text-[#202125]/80 uppercase tracking-wider mb-2">
                   Quick Field Triage Flags
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -245,8 +245,8 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
                     }
                     className={`h-13 rounded-xl px-3 font-semibold text-sm flex items-center justify-between border transition cursor-pointer ${
                       cas.triageFlags.isConscious
-                        ? 'bg-slate-800 border-slate-700 text-slate-200'
-                        : 'bg-rose-900/90 border-rose-500 text-white shadow-md'
+                        ? 'bg-[#F1EFEA] border-[#B2BECF] text-[#202125]'
+                        : 'bg-[#D64545] border-[#D64545] text-white shadow-sm'
                     }`}
                   >
                     <span>Conscious</span>
@@ -266,8 +266,8 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
                     }
                     className={`h-13 rounded-xl px-3 font-semibold text-sm flex items-center justify-between border transition cursor-pointer ${
                       cas.triageFlags.isBreathingNormally
-                        ? 'bg-slate-800 border-slate-700 text-slate-200'
-                        : 'bg-rose-900/90 border-rose-500 text-white shadow-md'
+                        ? 'bg-[#F1EFEA] border-[#B2BECF] text-[#202125]'
+                        : 'bg-[#D64545] border-[#D64545] text-white shadow-sm'
                     }`}
                   >
                     <span>Normal Breathing</span>
@@ -287,8 +287,8 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
                     }
                     className={`h-13 rounded-xl px-3 font-semibold text-sm flex items-center justify-between border transition cursor-pointer ${
                       cas.triageFlags.hasSevereBleeding
-                        ? 'bg-rose-900/90 border-rose-500 text-white shadow-md'
-                        : 'bg-slate-800 border-slate-700 text-slate-200'
+                        ? 'bg-[#D64545] border-[#D64545] text-white shadow-sm'
+                        : 'bg-[#F1EFEA] border-[#B2BECF] text-[#202125]'
                     }`}
                   >
                     <span>Severe Bleeding</span>
@@ -298,8 +298,8 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
               </div>
 
               {/* Derived Infrastructure Tags */}
-              <div className="bg-slate-950/80 rounded-xl p-3 border border-slate-800/80">
-                <span className="text-xs font-bold text-slate-400 block mb-2">
+              <div className="bg-[#F1EFEA] rounded-xl p-3 border border-[#B2BECF]/50">
+                <span className="text-xs font-bold text-[#202125]/75 block mb-2">
                   Auto-Derived Hospital Infra Required:
                 </span>
                 <div className="flex flex-wrap gap-1.5">
@@ -307,13 +307,13 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
                     cas.derivedInfra.map((infra) => (
                       <span
                         key={infra}
-                        className="px-2.5 py-1 text-xs font-extrabold bg-cyan-950 text-cyan-300 border border-cyan-700 rounded-md"
+                        className="px-2.5 py-1 text-xs font-extrabold bg-[#FD7F66]/15 text-[#FD7F66] border border-[#FD7F66]/40 rounded-md"
                       >
                         ⚡ {infra}
                       </span>
                     ))
                   ) : (
-                    <span className="text-xs text-slate-500 italic">No specialized critical infra required</span>
+                    <span className="text-xs text-[#202125]/50 italic">No specialized critical infra required</span>
                   )}
                 </div>
               </div>
@@ -325,7 +325,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
         <button
           type="button"
           onClick={addCasualty}
-          className="w-full h-14 bg-slate-800 hover:bg-slate-750 text-slate-200 font-extrabold text-base rounded-2xl border border-slate-700 hover:border-slate-600 flex items-center justify-center gap-2 transition cursor-pointer active:scale-[0.99]"
+          className="w-full h-14 bg-white hover:bg-[#F1EFEA] text-[#202125] font-extrabold text-base rounded-2xl border-2 border-[#B2BECF]/60 flex items-center justify-center gap-2 transition cursor-pointer active:scale-[0.99] shadow-sm"
         >
           <span className="text-xl">+</span> ADD ANOTHER CASUALTY (MULTI-INCIDENT)
         </button>
@@ -336,7 +336,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full h-16 bg-gradient-to-r from-rose-600 to-red-700 hover:from-rose-500 hover:to-red-600 text-white font-black text-lg tracking-wide rounded-2xl shadow-xl shadow-rose-950/50 flex items-center justify-center gap-3 transition cursor-pointer active:scale-[0.98] disabled:opacity-50"
+          className="w-full h-16 bg-[#FD7F66] hover:bg-[#e06a52] text-white font-black text-lg tracking-wide rounded-2xl shadow-lg flex items-center justify-center gap-3 transition cursor-pointer active:scale-[0.98] disabled:opacity-50"
         >
           {isLoading ? (
             <span className="animate-spin text-2xl">⏳</span>

@@ -104,39 +104,37 @@ function IntakeContent() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 px-4 py-6 md:py-10">
+    <main className="min-h-screen bg-[#F1EFEA] text-[#202125] px-4 py-6 md:py-10 font-sans">
       <div className="max-w-2xl mx-auto space-y-4">
         {/* Navigation Bar */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between border-b border-[#B2BECF]/40 pb-3">
           <button
             onClick={() => router.push('/ambulance')}
-            className="text-xs font-extrabold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 cursor-pointer bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl"
+            className="text-xs font-extrabold text-[#FD7F66] hover:text-[#e06a52] flex items-center gap-1 cursor-pointer bg-white border border-[#B2BECF]/60 px-3 py-2 rounded-xl transition shadow-sm"
           >
             ← Change Ambulance ({vehicleNumber})
           </button>
 
           <button
             onClick={() => router.push('/')}
-            className="text-xs font-bold text-slate-400 hover:text-slate-200 cursor-pointer bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl"
+            className="text-xs font-bold text-[#202125]/70 hover:text-[#202125] cursor-pointer bg-white border border-[#B2BECF]/60 px-3 py-2 rounded-xl transition shadow-sm"
           >
             🏠 Home
           </button>
         </div>
 
         {/* Brand Header */}
-        <header className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+        <header className="flex items-center justify-between border-b border-[#B2BECF]/40 pb-4 mb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 to-red-500 flex items-center justify-center font-black text-xl text-white shadow-lg shadow-rose-900/40">
-              ✚
-            </div>
+            <img src="/images/medflow_logo.svg" alt="MedFlow Logo" className="h-9 w-auto object-contain" />
             <div>
-              <h1 className="text-xl font-black tracking-tight text-white">MedFlow Routing</h1>
-              <p className="text-xs font-semibold text-rose-400">
-                Assigned Unit: <span className="font-mono text-white font-black">{vehicleNumber}</span>
+              <h1 className="text-xl font-black tracking-tight text-[#202125]">MedFlow Routing</h1>
+              <p className="text-xs font-semibold text-[#FD7F66]">
+                Assigned Unit: <span className="font-mono text-[#202125] font-black">{vehicleNumber}</span>
               </p>
             </div>
           </div>
-          <span className="text-[11px] font-mono font-bold bg-rose-950/70 text-rose-300 border border-rose-800/80 px-2.5 py-1 rounded-lg">
+          <span className="text-[11px] font-mono font-bold bg-[#D64545]/15 text-[#D64545] border border-[#D64545]/30 px-2.5 py-1 rounded-lg">
             LIVE DISPATCH
           </span>
         </header>
@@ -158,7 +156,7 @@ function IntakeContent() {
 
 export default function IntakePage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-950 text-white p-8 text-center font-bold">Loading Ambulance Routing...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-[#F1EFEA] text-[#202125] p-8 text-center font-bold">Loading Ambulance Routing...</div>}>
       <IntakeContent />
     </Suspense>
   );

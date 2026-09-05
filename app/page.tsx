@@ -1,9 +1,40 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function HomePage() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isAnimateIn, setIsAnimateIn] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const openModal = () => {
+    setIsOpen(true);
+    requestAnimationFrame(() => {
+      setIsAnimateIn(true);
+    });
+  };
+
+  const closeModal = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+    setIsAnimateIn(false);
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 200);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FAF4F0] via-[#FAD4CD] to-[#FFCACA] text-[#202125] flex flex-col justify-between selection:bg-[#FD7F66] selection:text-white font-sans">
       {/* Top Ambient Soft Glow Overlay */}
@@ -16,14 +47,19 @@ export default function HomePage() {
         {/* Header / Navbar */}
         <header className="bg-white/85 backdrop-blur-md border border-[#B2BECF]/50 rounded-2xl p-4 sm:px-6 sm:py-4 flex items-center justify-between shadow-sm hover:shadow-md transition-all">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#FD7F66] to-[#e0654c] flex items-center justify-center font-black text-xl text-white shadow-md shadow-[#FD7F66]/25 transform group-hover:rotate-6 transition">
-              ✚
-            </div>
-            <div>
-              <h1 className="text-2xl font-extrabold tracking-tight text-[#202125]">MedFlow</h1>
-              <p className="text-[11px] font-bold text-[#FD7F66] tracking-wide uppercase">Emergency Hospital Routing System</p>
-            </div>
+            <img src="/images/medflow_logo.svg" alt="MedFlow Logo" className="h-10 sm:h-12 w-auto object-contain" />
           </div>
+
+          {/* Top-Right Play MedFlow Button */}
+          <button
+            onClick={openModal}
+            className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-[#FD7F66] hover:bg-[#e0654c] text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all cursor-pointer transform active:scale-95"
+          >
+            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            <span>Play MedFlow</span>
+          </button>
         </header>
 
         {/* Hero Section */}
@@ -253,13 +289,11 @@ export default function HomePage() {
         </section>
       </div>
 
-      {/* Footer with Team Archangels Credit */}
+      {/* Footer with Team Archangels Credit & New Logo */}
       <footer className="mt-16 bg-white/80 backdrop-blur border-t border-[#B2BECF]/50 py-8 px-4 text-[#202125]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-[#FD7F66] flex items-center justify-center font-black text-white text-lg shadow-sm">
-              ✚
-            </div>
+            <img src="/images/logo.svg" alt="MedFlow Mark" className="w-8 h-8 object-contain" />
             <div>
               <div className="font-extrabold text-base text-[#202125]">MedFlow</div>
               <div className="text-xs text-[#202125]/60">Intelligent Emergency Hospital Routing Platform</div>
@@ -267,9 +301,9 @@ export default function HomePage() {
           </div>
 
           {/* Team Archangels Badge */}
-          <div className="flex flex-col sm:flex-row items-center gap-3 bg-[#FFCACA]/25 border border-[#B2BECF]/60 px-5 py-2.5 rounded-2xl shadow-sm">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-[#202125]/75">
-              MADE BY - TEAM NAME IS:
+          <div className="flex items-center gap-2 bg-[#FFCACA]/25 border border-[#B2BECF]/60 px-4 py-2 rounded-2xl shadow-sm">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-[#202125]/80">
+              MADE BY -
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#FD7F66] text-white font-black text-xs shadow-sm tracking-wide">
               <span>👼</span>
@@ -287,9 +321,52 @@ export default function HomePage() {
         </div>
 
         <div className="max-w-6xl mx-auto mt-6 pt-4 border-t border-[#B2BECF]/30 text-center text-[11px] text-[#202125]/60 font-medium">
-          © {new Date().getFullYear()} MedFlow System. All rights reserved. Hackathon Prototype.
+          © 2026 MedFlow — built for graVITas &apos;26 | All rights reserved. Hackathon Prototype.
         </div>
       </footer>
+
+      {/* Video Demo Modal */}
+      {isOpen && (
+        <div
+          className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 transition-opacity duration-200 ${
+            isAnimateIn ? 'opacity-100' : 'opacity-0'
+          }`}
+          onClick={closeModal}
+        >
+          {/* Dark Semi-Transparent Backdrop */}
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+
+          {/* Centered Video Card Container */}
+          <div
+            className={`relative z-10 w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10 transition-all duration-300 transform ${
+              isAnimateIn ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close (X) Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-3 right-3 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black/90 text-white/80 hover:text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer focus:outline-none"
+              aria-label="Close video modal"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Video Player */}
+            <video
+              ref={videoRef}
+              src="/videos/demo.mp4"
+              className="w-full aspect-video object-cover"
+              controls
+              autoPlay
+              muted
+              playsInline
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

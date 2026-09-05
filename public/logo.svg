@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="medflowLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE4E1" />
+      <stop offset="40%" stop-color="#FFCACA" />
+      <stop offset="80%" stop-color="#FD7F66" />
+      <stop offset="100%" stop-color="#E56A53" />
+    </linearGradient>
+  </defs>
+
+  {/* Outer Shield Outline */}
+  <path
+    d="M 50 64 C 80 54 120 54 150 64 C 154 108 136 146 100 174 C 64 146 46 108 50 64 Z"
+    stroke="url(#medflowLogoGradient)"
+    stroke-width="11"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  {/* Interlocking Triquetra Ribbon Loop */}
+  <path
+    d="M 100 32 L 136 104 C 148 128 124 152 98 142 L 56 124 C 32 114 40 80 66 78 L 134 78 C 160 80 168 114 144 124 L 102 142 C 76 152 52 128 64 104 Z"
+    stroke="url(#medflowLogoGradient)"
+    stroke-width="11"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

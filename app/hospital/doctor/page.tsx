@@ -50,36 +50,36 @@ export default function DoctorLoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 px-4 py-8 md:py-12 flex items-center justify-center">
+    <main className="min-h-screen bg-[#F1EFEA] text-[#202125] px-4 py-8 md:py-12 flex items-center justify-center font-sans">
       <div className="max-w-md w-full space-y-6">
         {/* Navigation */}
         <div className="flex items-center justify-between">
           <Link
             href="/hospital"
-            className="text-xs font-extrabold text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer bg-slate-900 border border-slate-800 px-3.5 py-2 rounded-xl transition"
+            className="text-xs font-extrabold text-[#202125]/70 hover:text-[#FD7F66] flex items-center gap-1 cursor-pointer bg-white border border-[#B2BECF]/60 px-3.5 py-2 rounded-xl transition shadow-sm"
           >
             ← Back to Hospital Portal
           </Link>
-          <span className="text-xs font-mono text-emerald-400 font-bold bg-emerald-950 border border-emerald-800 px-3 py-1.5 rounded-full">
+          <span className="text-xs font-mono text-[#3A8F6F] font-bold bg-[#3A8F6F]/10 border border-[#3A8F6F]/30 px-3 py-1.5 rounded-full">
             👨‍⚕️ DOCTOR LOGIN
           </span>
         </div>
 
         {/* Login Card */}
-        <div className="bg-slate-900 border-2 border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
+        <div className="bg-white border-2 border-[#B2BECF]/60 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm hover:shadow-md transition">
           <div className="space-y-2 text-center sm:text-left">
-            <div className="w-14 h-14 bg-emerald-950/90 border border-emerald-700 text-emerald-400 rounded-2xl flex items-center justify-center text-3xl font-black shadow-lg">
+            <div className="w-14 h-14 bg-[#3A8F6F]/10 border border-[#3A8F6F]/30 text-[#3A8F6F] rounded-2xl flex items-center justify-center text-3xl font-black shadow-sm">
               👨‍⚕️
             </div>
-            <h1 className="text-2xl font-black text-white pt-2">Physician Sign-In</h1>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <h1 className="text-2xl font-black text-[#202125] pt-2">Physician Sign-In</h1>
+            <p className="text-xs text-[#202125]/75 leading-relaxed font-medium">
               Enter your clinical credentials to access patient emergency records, scan QR codes, and record visit prescriptions.
             </p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-extrabold text-[#202125]/80 uppercase tracking-wider mb-1.5">
                 Doctor ID / License Number
               </label>
               <input
@@ -87,13 +87,13 @@ export default function DoctorLoginPage() {
                 value={doctorId}
                 onChange={(e) => setDoctorId(e.target.value)}
                 placeholder="e.g. DOC-404"
-                className="w-full h-13 bg-slate-950 border border-slate-700 rounded-xl px-4 text-white text-base font-mono focus:outline-none focus:border-emerald-400"
+                className="w-full h-13 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-4 text-[#202125] text-base font-mono focus:outline-none focus:border-[#3A8F6F]"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-extrabold text-[#202125]/80 uppercase tracking-wider mb-1.5">
                 Doctor Full Name & Title
               </label>
               <input
@@ -101,7 +101,7 @@ export default function DoctorLoginPage() {
                 value={doctorName}
                 onChange={(e) => setDoctorName(e.target.value)}
                 placeholder="e.g. Dr. Alex Smith"
-                className="w-full h-13 bg-slate-950 border border-slate-700 rounded-xl px-4 text-white text-base font-medium focus:outline-none focus:border-emerald-400"
+                className="w-full h-13 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-4 text-[#202125] text-base font-medium focus:outline-none focus:border-[#3A8F6F]"
                 required
               />
             </div>
@@ -109,7 +109,7 @@ export default function DoctorLoginPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white text-base font-black tracking-wide rounded-2xl shadow-xl shadow-emerald-950/50 flex items-center justify-center gap-2 transition cursor-pointer active:scale-[0.98] pt-1"
+              className="w-full h-14 bg-[#3A8F6F] hover:bg-[#2e745a] text-white text-base font-black tracking-wide rounded-2xl shadow-md flex items-center justify-center gap-2 transition cursor-pointer active:scale-[0.98] pt-1"
             >
               <span>ACCESS PATIENT SCANNER</span>
               <span className="text-lg">→</span>
@@ -117,15 +117,15 @@ export default function DoctorLoginPage() {
           </form>
 
           {/* Quick Demo Credentials Preset */}
-          <div className="pt-3 border-t border-slate-800 text-center">
-            <span className="text-[11px] text-slate-400 font-medium">Quick Demo Preset: </span>
+          <div className="pt-3 border-t border-[#B2BECF]/30 text-center">
+            <span className="text-[11px] text-[#202125]/60 font-medium">Quick Demo Preset: </span>
             <button
               type="button"
               onClick={() => {
                 setDoctorId('DOC-404');
                 setDoctorName('Dr. Alex Smith');
               }}
-              className="text-xs text-emerald-400 font-bold hover:underline cursor-pointer"
+              className="text-xs text-[#3A8F6F] font-bold hover:underline cursor-pointer"
             >
               Set Dr. Alex Smith (DOC-404)
             </button>
