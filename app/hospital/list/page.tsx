@@ -22,6 +22,11 @@ export default function HospitalListPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [noticeMessage, setNoticeMessage] = useState('');
 
+  // Password Modal state
+  const [selectedHospitalForAuth, setSelectedHospitalForAuth] = useState<Hospital | null>(null);
+  const [hospitalPassword, setHospitalPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
   // Load hospitals from Supabase + localStorage cache
   useEffect(() => {
     async function loadHospitals() {
@@ -133,7 +138,23 @@ export default function HospitalListPage() {
   };
 
   const handleSelectHospital = (hosp: Hospital) => {
-    router.push(`/hospital/${encodeURIComponent(hosp.id)}/rooms`);
+    setSelectedHospitalForAuth(hosp);
+    setHospitalPassword('');
+    setPasswordError('');
+  };
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (hospitalPassword === '1234') {
+      if (selectedHospitalForAuth) {
+        const targetId = selectedHospitalForAuth.id;
+        setSelectedHospitalForAuth(null);
+        setHospitalPassword('');
+        router.push(`/hospital/${encodeURIComponent(targetId)}/rooms`);
+      }
+    } else {
+      setPasswordError('Incorrect password. Access denied.');
+    }
   };
 
   return (
@@ -281,6 +302,77 @@ export default function HospitalListPage() {
           )}
         </div>
       </div>
+
+      {/* Hospital Access Password Modal */}
+      {selectedHospitalForAuth && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
+          <div className="bg-white border-2 border-[#FD7F66] rounded-2xl p-6 max-w-md w-full space-y-4 shadow-2xl animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between border-b border-[#B2BECF]/40 pb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">🔒</span>
+                <h3 className="text-lg font-black text-[#202125]">Hospital Access Verification</h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedHospitalForAuth(null)}
+                className="text-xs text-[#202125]/60 hover:text-[#202125] font-bold px-2 py-1 rounded-md hover:bg-gray-100"
+              >
+                ✕ Close
+              </button>
+            </div>
+
+            <div>
+              <p className="text-xs text-[#202125]/75 mb-1 font-medium">
+                Enter password to access room-level bed management for:
+              </p>
+              <p className="text-base font-black text-[#FD7F66]">
+                {selectedHospitalForAuth.name}
+              </p>
+            </div>
+
+            <form onSubmit={handlePasswordSubmit} className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-[#202125]/80 uppercase tracking-wider mb-1">
+                  Hospital Access Password
+                </label>
+                <input
+                  type="password"
+                  value={hospitalPassword}
+                  onChange={(e) => {
+                    setHospitalPassword(e.target.value);
+                    if (passwordError) setPasswordError('');
+                  }}
+                  placeholder="Enter password (e.g. 1234)"
+                  className="w-full h-12 bg-[#F1EFEA] border border-[#B2BECF] rounded-xl px-3 text-[#202125] text-base font-semibold focus:outline-none focus:border-[#FD7F66]"
+                  autoFocus
+                  required
+                />
+                {passwordError && (
+                  <p className="text-xs font-bold text-[#D64545] mt-1.5 flex items-center gap-1">
+                    <span>⚠️</span> {passwordError}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex items-center justify-end gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setSelectedHospitalForAuth(null)}
+                  className="h-11 px-4 text-xs font-bold text-[#202125]/70 bg-[#F1EFEA] hover:bg-[#B2BECF]/30 border border-[#B2BECF] rounded-xl transition cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="h-11 px-6 bg-[#FD7F66] hover:bg-[#e06a52] text-white text-xs font-black rounded-xl shadow-md transition cursor-pointer"
+                >
+                  Submit & Access →
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
