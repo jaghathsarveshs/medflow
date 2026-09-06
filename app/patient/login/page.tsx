@@ -203,8 +203,15 @@ export default function PatientLoginPage() {
     <div className="min-h-screen bg-[#F1EFEA] text-[#202125]">
       <Navbar
         rightElement={
-          <Link href="/" className="text-xs font-semibold text-[#B2BECF] hover:text-white transition">
-            🏠 Home
+          <Link
+            href="/"
+            title="Go to Homepage"
+            aria-label="Home"
+            className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#FD7F66] text-white flex items-center justify-center border border-white/15 hover:border-[#FD7F66] transition-all shadow-xs hover:shadow-md transform active:scale-95 group"
+          >
+            <svg className="w-5 h-5 fill-current text-white/80 group-hover:text-white transition-colors" viewBox="0 0 24 24">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+            </svg>
           </Link>
         }
       />

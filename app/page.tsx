@@ -43,22 +43,29 @@ export default function HomePage() {
         <div className="absolute -top-24 right-1/4 w-96 h-96 bg-white/40 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto w-full px-4 py-6 md:py-8 space-y-12 sm:space-y-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 pt-4 sm:pt-6 space-y-12 sm:space-y-16">
         {/* Header / Navbar */}
-        <header className="bg-white/85 backdrop-blur-md border border-[#B2BECF]/50 rounded-2xl p-4 sm:px-6 sm:py-4 flex items-center justify-between shadow-sm hover:shadow-md transition-all">
+        <header className="bg-white/95 backdrop-blur-xl border border-white/90 rounded-2xl sm:rounded-3xl px-5 sm:px-8 py-3.5 sm:py-4 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_14px_40px_rgba(0,0,0,0.1)] ring-1 ring-black/5 transition-all duration-300">
           <div className="flex items-center gap-3">
-            <img src="/images/medflow_logo.svg" alt="MedFlow Logo" className="h-10 sm:h-12 w-auto object-contain" />
+            <img src="/images/medflow_logo.svg" alt="MedFlow Logo" className="h-10 sm:h-12 w-auto object-contain hover:scale-[1.02] transition-transform" />
+          </div>
+
+          <div className="hidden md:flex items-center gap-2 bg-[#F1EFEA] border border-[#B2BECF]/40 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold text-[#3A8F6F]">
+            <span className="w-2 h-2 rounded-full bg-[#3A8F6F] animate-pulse" />
+            <span>INTELLIGENT ROUTING ACTIVE</span>
           </div>
 
           {/* Top-Right Play MedFlow Button */}
           <button
             onClick={openModal}
-            className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-[#FD7F66] hover:bg-[#e0654c] text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all cursor-pointer transform active:scale-95"
+            className="group relative inline-flex items-center gap-2.5 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#FD7F66] via-[#FF684B] to-[#F05537] hover:from-[#f86d52] hover:to-[#e04325] text-white font-black text-xs sm:text-sm shadow-[0_4px_20px_rgba(253,127,102,0.4)] hover:shadow-[0_6px_28px_rgba(253,127,102,0.6)] transition-all duration-300 cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95 ring-2 ring-[#FD7F66]/30 hover:ring-[#FD7F66]/60"
           >
-            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            <span>Play MedFlow</span>
+            <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg sm:rounded-xl bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-[#FD7F66] transition-colors shadow-xs">
+              <svg className="w-3.5 h-3.5 fill-current transform group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+            <span className="tracking-wide">Play MedFlow</span>
           </button>
         </header>
 
